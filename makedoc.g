@@ -5,6 +5,7 @@
 ###########################################################################
 
 FFCSAMANUALFILES:=[
+"../PackageInfo.g",
 "../lib/misc.gd",
 "../lib/weight.gd",
 "../lib/matrix.gd",

@@ -5,12 +5,12 @@
 SetPackageInfo( rec(
 PackageName := "FFCSA",
 Subtitle := "FFCSA - Finite Field Constructions, Search and Algorithms",
-Version := "1.0.4",
-Date := "17/04/2023",
+Version := "0.9.4",
+Date := "20/04/2023",
 ##<#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "1.0.4">
-##  <!ENTITY RELEASEDATE "17 April 2023">
-##  <!ENTITY RELEASEYEAR "2022">
+##  <!ENTITY VERSION "0.9.4">
+##  <!ENTITY RELEASEDATE "20 April 2023">
+##  <!ENTITY RELEASEYEAR "2023">
 ##<#/GAPDoc>
 
 Persons := [
@@ -31,14 +31,29 @@ Persons := [
   ),
 ],
 
+Status := "dev",
 
-Status := "other",
+SourceRepository := rec(
+    Type := "git",
+    URL := Concatenation( "https://github.com/nzidaric/", LowercaseString(~.PackageName) ),
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+PackageWWWHome  := Concatenation( "https://nzidaric.github.io/", LowercaseString(~.PackageName) ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/", ~.PackageName, "-", ~.Version ),
+ArchiveFormats := ".tar.gz",
 
+AbstractHTML := "This package was designed for implementations of (cryptographic) hardware based on finite field arithmetic.",
 
 PackageDoc := rec(
-  BookName  := "FFCSA",
-  PDFFile   := "doc/ffcsa.pdf",
-  SixFile   := "doc/manual.six",
+  BookName := "FFCSA",
+  ArchiveURLSubset := ["doc"],
+  HTMLStart := "doc/chap0_mj.html",
+  PDFFile := "doc/manual.pdf",
+  SixFile := "doc/manual.six",
   LongTitle := "FFCSA - Finite Field Constructions, Search and Algorithms",
   Autoload := true
 ),
