@@ -1,102 +1,75 @@
 #############################################################################
-##  
-##  Demo PackageInfo.g for the GitHubPagesForGAP
 ##
-
+##  PackageInfo.g for the package `ffcsa'
+#
 SetPackageInfo( rec(
-
-PackageName := "GitHubPagesForGAP",
-
-Subtitle := "A GitHub Pages generator for GAP packages",
-Version := "0.3",
-Date := "10/11/2019", # dd/mm/yyyy format
-License := "0BSD",
+PackageName := "FFCSA",
+Subtitle := "FFCSA - Finite Field Constructions, Search and Algorithms",
+Version := "0.9.4",
+Date := "20/04/2023",
+##<#GAPDoc Label="PKGVERSIONDATA">
+##  <!ENTITY VERSION "0.9.4">
+##  <!ENTITY RELEASEDATE "20 April 2023">
+##  <!ENTITY RELEASEYEAR "2023">
+##<#/GAPDoc>
 
 Persons := [
   rec(
-    LastName      := "Horn",
-    FirstNames    := "Max",
+    LastName      := "Zidaric",
+    FirstNames    := "Nusa",
     IsAuthor      := true,
     IsMaintainer  := true,
-    Email         := "max.horn@uni-siegen.de",
-    WWWHome       := "https://www.quendi.de/math",
-    PostalAddress := Concatenation(
-                       "Department Mathematik\n",
-                       "Universität Siegen\n",
-                       "Walter-Flex-Straße 3\n",
-                       "57072 Siegen\n",
-                       "Germany" ),
-    Place         := "Siegen",
-    Institution   := "Universität Siegen"
-  ),
-
-  rec(
-    LastName      := "Thor",
-    FirstNames    := "A. U.",
-    IsAuthor      := true,
-    IsMaintainer  := false,
-    #Email         := "author@example.com",
-  ),
-
-  rec(
-    LastName      := "Itor",
-    FirstNames    := "Jan",
-    IsAuthor      := false,
-    IsMaintainer  := true,
-    #Email         := "janitor@example.com",
+    Email         := "nzidaric@uwaterloo.ca",
+    WWWHome       := "http://comsec.uwaterloo.ca/",
+    PostalAddress := Concatenation( [
+                       "200 University Ave W",
+                       "Waterloo",
+                       "Canada",
+                       "ON N2L 3G1" ] ),
+    Place         := "Waterloo",
+    Institution   := "UW-ComSec Lab"
   ),
 ],
 
-Status := "other",
+Status := "dev",
 
-# The following are not strictly necessary in your own PackageInfo.g
-# (in the sense that update.g only looks at the usual fields
-# like PackageWWWHome, ArchiveURL etc.). But they are convenient
-# if you use exactly the scheme for your package website that we propose.
-GithubUser := "gap-system",
-GithubRepository := ~.PackageName,
-GithubWWW := Concatenation("https://github.com/", ~.GithubUser, "/", ~.GithubRepository),
+SourceRepository := rec(
+    Type := "git",
+    URL := Concatenation( "https://github.com/nzidaric/", LowercaseString(~.PackageName) ),
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+PackageWWWHome  := Concatenation( "https://nzidaric.github.io/", LowercaseString(~.PackageName) ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/", ~.PackageName, "-", ~.Version ),
+ArchiveFormats := ".tar.gz",
 
-PackageWWWHome := Concatenation("https://", ~.GithubUser, ".github.io/", ~.GithubRepository, "/"),
-README_URL     := Concatenation( ~.PackageWWWHome, "README.md" ),
-PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-# The following assumes you are using the Github releases system. If not, adjust
-# it accordingly.
-ArchiveURL     := Concatenation(~.GithubWWW,
-                    "/releases/download/v", ~.Version, "/",
-                    ~.GithubRepository, "-", ~.Version),
-
-ArchiveFormats := ".tar.gz .tar.bz2",
-
-AbstractHTML := 
-  "This is a pseudo package that contains no actual\
-  <span class=\"pkgname\">GAP</span> code. Instead, it is a template for other\
-  GAP packages that allows to quickly setup GitHub Pages.",
+AbstractHTML := "This package was designed for implementations of (cryptographic) hardware based on finite field arithmetic.",
 
 PackageDoc := rec(
-  BookName  := "GitHubPagesForGAP",
+  BookName := "FFCSA",
   ArchiveURLSubset := ["doc"],
-  HTMLStart := "doc/chap0.html",
-  PDFFile   := "doc/manual.pdf",
-  SixFile   := "doc/manual.six",
-  LongTitle := "A GitHub Pages generator for GAP packages",
+  HTMLStart := "doc/chap0_mj.html",
+  PDFFile := "doc/manual.pdf",
+  SixFile := "doc/manual.six",
+  LongTitle := "FFCSA - Finite Field Constructions, Search and Algorithms",
+  Autoload := true
 ),
 
-# The following dependencies are fake and for testing / demo purposes
 Dependencies := rec(
-  GAP := ">=4.8.1",
-  NeededOtherPackages := [
-    ["GAPDoc", ">= 1.2"],
-    ["IO", ">= 4.1"],
-  ],
-  SuggestedOtherPackages := [["orb", ">= 4.2"]],
+  GAP := "4.8",
+  NeededOtherPackages := [["GAPDoc", "1.6"], ["FSR", "1.0.0"]],
+  SuggestedOtherPackages := [],
   ExternalConditions := []
+
 ),
 
 AvailabilityTest := ReturnTrue,
 
-Keywords := ["GitHub Pages", "GAP"]
+TestFile := "tst/testall.g",
+
+Keywords := ["package FFCSA", "finite fields", "constructions", "representations", "search", "algorithms"]
 
 ));
-
-

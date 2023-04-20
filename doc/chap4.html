@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (FFCSA) - Chapter 4: Algorithms</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap4"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap4_mj.html">[MathJax on]</a></p>
+<p><a id="X85FBC8467CFA2980" name="X85FBC8467CFA2980"></a></p>
+<div class="ChapSects"><a href="chap4.html#X85FBC8467CFA2980">4 <span class="Heading">Algorithms</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X866E18057EF83F65">4.1 <span class="Heading">Auxiliary functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7AB8209E82B890B7">4.1-1 ChooseFieldElm</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X84C4CE847D63E01F">4.1-2 SLL</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X8132CDE27D0B95F1">4.2 <span class="Heading">Genetaring expressions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7B16068181BA738E">4.2-1 MultEvecMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X79921E577C6EBE14">4.2-2 MatrixMultByConstExpression</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X84E32BBB834FC3AB">4.2-3 MatrixExpression</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7AB044D97D8A033C">4.2-4 FFA_mult_convolution</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7E43360F7DE56D7E">4.2-5 FFA_mult_matrixU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7F75FF8A84B62763">4.2-6 FFA_mult_matrixM</a></span>
+</div></div>
+</div>
+
+<h3>4 <span class="Heading">Algorithms</span></h3>
+
+<p><a id="X866E18057EF83F65" name="X866E18057EF83F65"></a></p>
+
+<h4>4.1 <span class="Heading">Auxiliary functions</span></h4>
+
+<p><a id="X7AB8209E82B890B7" name="X7AB8209E82B890B7"></a></p>
+
+<h5>4.1-1 ChooseFieldElm</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ChooseFieldElm</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ChooseFieldElmdownto</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>In order to generate the expressions for hardware implementations, the GAP variables $a_i, b_j$ need to be created for symbollic computatioin. Method <code class="code">ChooseFieldElms</code> prepares vectors <span class="SimpleMath">avec=[a_0, dots , a_m-1]</span>, <span class="SimpleMath">bvec=[b_0,dots,b_m-1]</span>, and <span class="SimpleMath">dvec=[d_0,dots,d_2m-2]</span>, with default direction {\tt To}, where <span class="SimpleMath">m=[F:K]</span> is the degree of extension. Vector <span class="SimpleMath">dvec</span> is needed for the two-step classic multiplication.</p>
+
+<p>Method <code class="code">ChooseFieldElmsDownto</code> creates vectors <span class="SimpleMath">avec=[a_m-1, dots , a_0]</span>, <span class="SimpleMath">bvec=[b_m-1, dots , b_0]</span>, and <span class="SimpleMath">dvec=[d_2m-2,dots,d_0]</span>, with default direction {\tt To}, Note that <span class="SimpleMath">a_i, b_j, d_k</span> are not coefficients, but GAP variables to allow symbolic computation.</p>
+
+<p><a id="X84C4CE847D63E01F" name="X84C4CE847D63E01F"></a></p>
+
+<h5>4.1-2 SLL</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SLL</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SRL</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SLA</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SRA</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ROL</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ROR</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ANDbw</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; XORbw</code>( <var class="Arg">vec</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>Simple vector manipulation functions: left/right logical/arithmetic shift, left/right rotation, bitwise <code class="code">AND</code>, <code class="code">XOR</code>.</p>
+
+<p><a id="X8132CDE27D0B95F1" name="X8132CDE27D0B95F1"></a></p>
+
+<h4>4.2 <span class="Heading">Genetaring expressions</span></h4>
+
+<p><a id="X7B16068181BA738E" name="X7B16068181BA738E"></a></p>
+
+<h5>4.2-1 MultEvecMatrix</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MultEvecMatrix</code>( <var class="Arg">vec1</var>, <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MultMatrixEvec</code>( <var class="Arg">M</var>, <var class="Arg">vec2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MultEvecMatrixEvec</code>( <var class="Arg">vec1</var>, <var class="Arg">M</var>, <var class="Arg">vec2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>left and right multiplications of vectors and matrices, returning <var class="Arg">vec1*M</var>, <var class="Arg">M*vec2</var>, and <var class="Arg">vec1*M*vec2</var>, respectively.</p>
+
+<p><a id="X79921E577C6EBE14" name="X79921E577C6EBE14"></a></p>
+
+<h5>4.2-2 MatrixMultByConstExpression</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixMultByConstExpression</code>( <var class="Arg">B</var>, <var class="Arg">C</var>, <var class="Arg">vec2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixMultByConstExpression</code>( <var class="Arg">M</var>, <var class="Arg">vec2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TransitionMatrixExpression</code>( <var class="Arg">B1</var>, <var class="Arg">B2</var>, <var class="Arg">vec2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><a id="X84E32BBB834FC3AB" name="X84E32BBB834FC3AB"></a></p>
+
+<h5>4.2-3 MatrixExpression</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixExpression</code>( <var class="Arg">M</var>, <var class="Arg">vec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixUExpression</code>( <var class="Arg">M</var>, <var class="Arg">vec2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixMExpression</code>( <var class="Arg">B1</var>, <var class="Arg">B2</var>, <var class="Arg">vec2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><a id="X7AB044D97D8A033C" name="X7AB044D97D8A033C"></a></p>
+
+<h5>4.2-4 FFA_mult_convolution</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_mult_convolution</code>( <var class="Arg">avec</var>, <var class="Arg">bvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ReductionMatrixExpression</code>( <var class="Arg">f</var>, <var class="Arg">dvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ReductionMatrixExpressionDownto</code>( <var class="Arg">f</var>, <var class="Arg">dvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_mult_2stepClassic</code>( <var class="Arg">f</var>, <var class="Arg">avec</var>, <var class="Arg">bvec</var>, <var class="Arg">dir</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_mult_2stepClassic</code>( <var class="Arg">f</var>, <var class="Arg">dir</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><a id="X7E43360F7DE56D7E" name="X7E43360F7DE56D7E"></a></p>
+
+<h5>4.2-5 FFA_mult_matrixU</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_mult_matrixU</code>( <var class="Arg">B</var>, <var class="Arg">avec</var>, <var class="Arg">bvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_sq_matrixU</code>( <var class="Arg">B</var>, <var class="Arg">avec</var>, <var class="Arg">bvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_exp_matrixU</code>( <var class="Arg">B</var>, <var class="Arg">avec</var>, <var class="Arg">bvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_inv_matrixU</code>( <var class="Arg">B</var>, <var class="Arg">avec</var>, <var class="Arg">bvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><a id="X7F75FF8A84B62763" name="X7F75FF8A84B62763"></a></p>
+
+<h5>4.2-6 FFA_mult_matrixM</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FFA_mult_matrixM</code>( <var class="Arg">B</var>, <var class="Arg">avec</var>, <var class="Arg">bvec</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

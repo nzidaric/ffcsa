@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (FFCSA) - Chapter 1: Introduction and First Methods</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap1"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap1_mj.html">[MathJax on]</a></p>
+<p><a id="X781F85CE87635EA3" name="X781F85CE87635EA3"></a></p>
+<div class="ChapSects"><a href="chap1.html#X781F85CE87635EA3">1 <span class="Heading">Introduction and First Methods</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7F05D84378AD67C5">1.1 <span class="Heading">Motivation and basic funtionality</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X80316E42822BE09A">1.1-1 <span class="Heading">A small complexity normal basis</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X83E93B5B860E2EA0">1.1-2 <span class="Heading">A small complexity transition matrix</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7B7E152878F89B5C">1.1-3 <span class="Heading">A finite field multiplier</span></a>
+</span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7B16F86879EB8FF9">1.2 <span class="Heading">Miscellaneous and Weight methods</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X83965BC084D204B3">1.2-1 PolyPhi</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X788C6C72864595F8">1.2-2 NrNormalFFE</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X847B7D4B7B0A2DDF">1.2-3 NrIrreduciblePoly</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X80494B497BA421F9">1.2-4 WeightMatrixBoth</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X810AC2EF86BE4090">1.2-5 WeightPolynomial</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7C6473467EBB23F0">1.3 <span class="Heading">Matrices for matrix-vector multipliers</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X78795F187AB43268">1.3-1 MatrixMultByConst</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7CAE164D875865E3">1.3-2 TransitionMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7B81F2967EADDAE1">1.3-3 ReductionMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7CFC3ADD7BBC97E7">1.3-4 MatrixU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7DCAF3587EFF8ACD">1.3-5 MatrixM</a></span>
+</div></div>
+</div>
+
+<h3>1 <span class="Heading">Introduction and First Methods</span></h3>
+
+<p><a id="X7F05D84378AD67C5" name="X7F05D84378AD67C5"></a></p>
+
+<h4>1.1 <span class="Heading">Motivation and basic funtionality</span></h4>
+
+<p>The following short examples (Examples \ref{ex6.1}-\ref{ex6.3}) show the interplay of different parts of the <strong class="pkg">FFCSA</strong> package and provide an insight into its structure. They illustrate the basic functionality of the package: the constructions, the search and the algorithms. The <strong class="pkg">FFCSA</strong> methods are tasked with finding (special) elements, finding (special) polynomials, generating matrices and bases, computing Hamming weights, and finally, obtaining expressions for finite field arithmetic algorithms. The search is closely linked to the Design Space Exploration (DSE), theoretical estimates (naive methods such as Hamming weights, but will be extended in the future), and can be used to make certain architectural decisions early in the design flow. Below we list a few motivational examples.</p>
+
+<p><a id="X80316E42822BE09A" name="X80316E42822BE09A"></a></p>
+
+<h5>1.1-1 <span class="Heading">A small complexity normal basis</span></h5>
+
+<p>A small complexity normal basis is believed to yield smaller hardware w.r.t. a normal basis with higher complexity <a href="chapBib.html#biBvan">[MOVW88]</a>. A small complexity normal basis can be found with exhaustive search, which requires several steps: (i.) find the normal elements, (ii.) build their multiplication tables T, (iii.) compute the Hamming weights of tables T, and (iv.) find the minimum Hamming Weight T. This example is covered in more detail in <a href="chap3.html#X865E2E6479A2554C"><span class="RefLink">3.1</span></a>.</p>
+
+<p><a id="X83E93B5B860E2EA0" name="X83E93B5B860E2EA0"></a></p>
+
+<h5>1.1-2 <span class="Heading">A small complexity transition matrix</span></h5>
+
+<p>Another more complex example is a finite field for which no optimal normal bases exist, for example <span class="SimpleMath">F_2^16}</span>, but the algorithm requires a lot of exponentiations to powers of two. Normal bases are very convenient for the exponentiations. However, a tower field basis is more suitable for multiplications and inversions: the search criterion is to minimize the Hamming Weights of the transition matrices between tower field and normal bases. A less obvious middle step is constructing the tower field itself, requiring (a search for) an irreducible polynomial for the next level at each level of the tower. This example is covered in more detail in Section~REF!!!</p>
+
+<p><a id="X7B7E152878F89B5C" name="X7B7E152878F89B5C"></a></p>
+
+<h5>1.1-3 <span class="Heading">A finite field multiplier</span></h5>
+
+<p>Last but not least is the generation of expressions used for the hardware implementations, e.g., finite field multiplication. Specifically, to implement a <span class="SimpleMath">F_2^4}</span> multiplier, the following steps are performed: (i.) a specific defining polynomial of degree 4 is obtained by the search for defining polynomials, (ii.) the polynomial basis with the root of the defining polynomial is generated, (iii.) then matrix U <a href="chapBib.html#biBAHnotes">[Has17]</a> is generated for this basis using a vector of variables <span class="SimpleMath">[a_0, a_1, a_2, a_3]</span>, and (vi.) the expressions for the 4 components of the product are obtained by multiplying the matrix U (with indeterminates <span class="SimpleMath">a_i</span>) with the vector of variables <span class="SimpleMath">[b_0, b_1, b_2, b_3]</span>. Details are given in Section~REF!!!</p>
+
+<p>However, theoretically optimal does not neccesarily yield the best hardware. There are application considerations, ... And finally, there are physical limitations that affect architectural decisions. For example, subexpression elimination will yield smallest area profile for a hardware module, but once implemented, long propagation delays and routing congestions can case this hardware module to be inferior to a module containing an copy of this subexpression.</p>
+
+<p><a id="X7B16F86879EB8FF9" name="X7B16F86879EB8FF9"></a></p>
+
+<h4>1.2 <span class="Heading">Miscellaneous and Weight methods</span></h4>
+
+<p><a id="X83965BC084D204B3" name="X83965BC084D204B3"></a></p>
+
+<h5>1.2-1 PolyPhi</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PolyPhi</code>( <var class="Arg">K</var>, <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>Based on <a href="chapBib.html#biBmullen">[MP13, (2.1.111)]</a> and For <span class="SimpleMath">f∈ F_q[x]</span>, the finite field polynomial <span class="SimpleMath">Φ</span> function, <span class="SimpleMath">Φ_q(f)</span>, denotes the number of polynomials over <span class="SimpleMath">F_q</span>, which are of smaller degree than degree of <var class="Arg">f</var> and which are relatively prime to <var class="Arg">f</var>. Method <code class="func">PolyPhi</code> is implemented using properties of <span class="SimpleMath">Φ_q</span> and the existing GAP methods <code class="func">Factors</code> (<a href="../../../doc/ref/chap56.html#X82D6EDC685D12AE2"><span class="RefLink">Reference: Factors</span></a>) and <code class="func">PolynomialRing</code> (<a href="../../../doc/ref/chap66.html#X7D2F16E480060330"><span class="RefLink">Reference: PolynomialRing</span></a>) <a href="chapBib.html#biBgapX">[GAP22, (66.10-1)]</a> and <a href="chapBib.html#biBgapX">[GAP22, (66.15-1)]</a>. to obtain factorization <span class="SimpleMath">f=∏_i f_i^c_i</span>, where <span class="SimpleMath">f_i</span> are irreducible, <span class="SimpleMath">deg(f_i)=n_i</span> and <span class="SimpleMath">c_i</span> is the multiplicity of <span class="SimpleMath">f_i</span>. Properties of <span class="SimpleMath">Φ_q</span> used <a href="chapBib.html#biBmenezesFF">[MBG+92, (pp.9)]</a>:</p>
+
+
+<ul>
+<li><p>if <span class="SimpleMath">gcd(f_i, f_j)=1</span> then <span class="SimpleMath">Φ_q(f_if_j)=Φ_q(f_i)Φ_q(f_j)</span></p>
+
+</li>
+<li><p>if <span class="SimpleMath">f_i</span> is irreducible of degree <span class="SimpleMath">n_i</span> then <span class="SimpleMath">Φ_q(f_i^c_i)= q^n_ic_i-q^n_i(c_i-1)</span></p>
+
+</li>
+</ul>
+<p><a id="X788C6C72864595F8" name="X788C6C72864595F8"></a></p>
+
+<h5>1.2-2 NrNormalFFE</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrNormalFFE</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrNormalFFEIgnoreConjugates</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">NrNormalFFE</code> returns the number of normal elements in field extension of degree <var class="Arg">m</var> over the finite field <var class="Arg">K</var><span class="SimpleMath">= F_q</span> using method <code class="func">PolyPhi</code> (<a href="chap1.html#X83965BC084D204B3"><span class="RefLink">1.2-1</span></a>), that is the polynomial <span class="SimpleMath">Φ_q</span> function, on <var class="Arg">K</var> and <span class="SimpleMath">x^m-1</span>: <span class="SimpleMath">Φ_q(x^m-1)</span> <a href="chapBib.html#biBmullen">[MP13, (5.2.8)]</a>.</p>
+
+<p><code class="code">NrNormalFFEIgnoreConjugates</code> returns <span class="SimpleMath">frac1mΦ_q(x^m-1)</span> <a href="chapBib.html#biBmenezesFF">[MBG+92, (4.14)]</a>.</p>
+
+<p><a id="X847B7D4B7B0A2DDF" name="X847B7D4B7B0A2DDF"></a></p>
+
+<h5>1.2-3 NrIrreduciblePoly</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrIrreduciblePoly</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrPrimitivePoly</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrIrreducibleNotPrimitivePoly</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">NrIrreduciblePoly</code> returns the number of monic irreducible polynomials of degree <var class="Arg">m</var> over the finite field <var class="Arg">K</var>, computed as <span class="Math">I_q(m)=\frac{1}{m}\sum_{d|m}\mu(d)q^{\frac{m}{d}}</span> by <a href="chapBib.html#biBmullen">[MP13, (3.1.2)]</a>, where <span class="SimpleMath">μ</span> is the Mobius function <code class="func">MoebiusMu</code> (<a href="../../../doc/ref/chap15.html#X79C1DA36827C2959"><span class="RefLink">Reference: MoebiusMu</span></a>) <a href="chapBib.html#biBgapX">[GAP22, (15.5-3)]</a>.</p>
+
+<p><code class="code">NrPrimitivePoly</code> returns the number of primitive polynomials of degree <var class="Arg">m</var> over the finite field <var class="Arg">K</var>, computed using Euler <span class="SimpleMath">ϕ</span> function as <span class="Math">\frac{1}{m}{\Phi}(q^m-1)</span> <a href="chapBib.html#biBmullen">[MP13, (4.1.3)]</a>, where <span class="SimpleMath">Φ</span> is the Euler function <code class="func">Phi</code> (<a href="../../../doc/ref/chap15.html#X85A0C67982D9057A"><span class="RefLink">Reference: Phi</span></a>) <a href="chapBib.html#biBgapX">[GAP22, (15.2-2)]</a>.</p>
+
+<p><code class="code">NrIreducibleNotPrimitivePoly</code> returns the number of irreducible but not primitive polynomials of degree <var class="Arg">m</var> over the finite field <var class="Arg">K</var>.</p>
+
+<p><a id="X80494B497BA421F9" name="X80494B497BA421F9"></a></p>
+
+<h5>1.2-4 WeightMatrixBoth</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeightMatrixBoth</code>( <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeightMatrixMaxRow</code>( <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeightMatrix</code>( <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">WeightMatrixBoth</code> returns the Hamming Weights (HW) of matrix <var class="Arg">M</var> over a finite field.</p>
+
+<p><code class="code">WeightMatrixMaxRow</code> retrns the Hamming Weight of matrix <var class="Arg">M</var> over a finite field.</p>
+
+<p><code class="code">WeightMatrix</code> returns the Hamming Weight of matrix <var class="Arg">M</var> over a finite field.</p>
+
+<p>Returned values are the maximal row HW (naive estimate for the circuit delay) and the HW of the the entire matrix (naive estimate for the circuit area). Estimates are naive because they do not account for subexpression eliminations.</p>
+
+<p>Methods are using <code class="func">WeightVecFFE</code> (<a href="../../../doc/ref/chap23.html#X7C9F4D657F9BA5A1"><span class="RefLink">Reference: WeightVecFFE</span></a>) <a href="chapBib.html#biBgapX">[GAP22, (23.6-1)]</a>.</p>
+
+<p><a id="X810AC2EF86BE4090" name="X810AC2EF86BE4090"></a></p>
+
+<h5>1.2-5 WeightPolynomial</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeightPolynomial</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns the Hamming Weight (HW) of the coefficient vector of univariate polynomial <var class="Arg">f</var>. For polynomials used as (N)LFSR feedbacks, the HW gives an estimate of both circuit delay and area.</p>
+
+<p>Method is using <code class="func">WeightVecFFE</code> (<a href="../../../doc/ref/chap23.html#X7C9F4D657F9BA5A1"><span class="RefLink">Reference: WeightVecFFE</span></a>) <a href="chapBib.html#biBgapX">[GAP22, (23.6-1)]</a>.</p>
+
+<p><a id="X7C6473467EBB23F0" name="X7C6473467EBB23F0"></a></p>
+
+<h4>1.3 <span class="Heading">Matrices for matrix-vector multipliers</span></h4>
+
+<p>Let <span class="SimpleMath">B_mathcalF/mathcalK}={ρ^(0),ρ^(1),dots,ρ^(m-1)}= {ρ^(i)}_i=0^m-1</span> be an arbitrary basis of <span class="SimpleMath">mathcalF/mathcalK</span>, where <span class="SimpleMath">m=[mathcalF:mathcalK]</span> and <span class="SimpleMath">ρ∈mathcalF</span>. Then for <span class="SimpleMath">A∈mathcalF</span> w.r.t.basis <span class="SimpleMath">B_mathcalF/mathcalK}</span> we use the notation:</p>
+
+
+<ul>
+<li><p><span class="SimpleMath">A =∑_i=0^m-1a_iρ^(i)</span> for the representation,</p>
+
+</li>
+<li><p><span class="SimpleMath">[A]_B_mathcalF/mathcalK}=[a_0, a_1, dots , a_m-1]</span> for its vector form,</p>
+
+</li>
+<li><p><span class="SimpleMath">[A]_(i) = a_i</span> for the <span class="SimpleMath">i</span>-th coordinate, where <span class="SimpleMath">0≤ i≤ m-1</span>.</p>
+
+</li>
+</ul>
+<p>We introduce the notion of <em>direction</em> for the basis, adopted from hardware design. For defining polynomial <var class="Arg">f</var> of degree <span class="SimpleMath">m</span>, where <span class="SimpleMath">f(ω)=0</span>, the polynomial basis with direction</p>
+
+
+<ul>
+<li><p><em>to</em>: <span class="SimpleMath">PB_ to={1,ω,dots, ω^m-1}</span> (note on first notation: <span class="SimpleMath">ρ^(0)=1</span>)</p>
+
+</li>
+<li><p><em>downto:</em> <span class="SimpleMath">PB_ downto={ω^m-1, dots, ω,1}</span>. (note on first notation: <span class="SimpleMath">ρ^(0)=ω^m-1</span>)</p>
+
+</li>
+</ul>
+<p>For normal bases, we only consider the direction :</p>
+
+
+<ul>
+<li><p><em>to</em>: <span class="SimpleMath">NB={β, β^2,dots,β^2^m-1}}</span> where <span class="SimpleMath">β</span> is a normal element. (note on first notation: <span class="SimpleMath">ρ^(0)=β</span>)</p>
+
+</li>
+</ul>
+<p><a id="X78795F187AB43268" name="X78795F187AB43268"></a></p>
+
+<h5>1.3-1 MatrixMultByConst</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixMultByConst</code>( <var class="Arg">B</var>, <var class="Arg">C</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns <span class="SimpleMath">m× m</span> matrix <var class="Arg">M</var> for multiplication with constant <var class="Arg">ffe</var> <var class="Arg">C</var>. To be used as a matrix-vector multiplier <span class="SimpleMath">M⋅ [A]_B</span> for the product <span class="SimpleMath">[C⋅ A]_B</span>, where <var class="Arg">A</var> is an aribtrary <var class="Arg">ffe</var> represented in basis <var class="Arg">B</var>.</p>
+
+<p><a id="X7CAE164D875865E3" name="X7CAE164D875865E3"></a></p>
+
+<h5>1.3-2 TransitionMatrix</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TransitionMatrix</code>( <var class="Arg">B1</var>, <var class="Arg">B2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns <span class="SimpleMath">m× m</span> transition matrix <span class="SimpleMath">T</span> from basis <var class="Arg">B1</var> to basis <var class="Arg">B2</var>. To be used as a matrix-vector multiplier for basis transiotion <span class="SimpleMath">T⋅ [A]_B1</span> to obtain <span class="SimpleMath">[A]_B2</span>, where <var class="Arg">A</var> is an aribtrary <var class="Arg">ffe</var>.</p>
+
+<p><a id="X7B81F2967EADDAE1" name="X7B81F2967EADDAE1"></a></p>
+
+<h5>1.3-3 ReductionMatrix</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ReductionMatrix</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ReductionMatrixIR</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ReductionMatrixDownto</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ReductionMatrixRI</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">ReductionMatrix</code> returns <span class="SimpleMath">m× (m-1)</span> reduction matrix <span class="SimpleMath">R</span> w.r.t. <em>direction to</em>. Columns of <span class="SimpleMath">R</span> are the elements <span class="SimpleMath">[ω^m]</span>, <span class="SimpleMath">[ω^m+1]</span>, ..., <span class="SimpleMath">[ω^2m-2]</span>. <code class="code">ReductionMatrixIR</code> returns the <span class="SimpleMath">m× (2m-1)</span> matrix <span class="SimpleMath">[I|R]</span>: columns of identity matrix <span class="SimpleMath">I</span> followed by the columns of <code class="code">R=ReductionMatrix(f)</code>.</p>
+
+<p><code class="code">ReductionMatrixDownto</code> returns <span class="SimpleMath">m× (m-1)</span> reduction matrix <span class="SimpleMath">R</span> w.r.t. <em>direction downto</em>. Columns of <span class="SimpleMath">R</span> are the elements <span class="SimpleMath">[ω^2m-2]</span>, <span class="SimpleMath">[ω^m+1]</span>, ..., <span class="SimpleMath">[ω^m]</span>. <code class="code">ReductionMatrixRI</code> returns the <span class="SimpleMath">m× (2m-1)</span> matrix <span class="SimpleMath">[R|I]</span>: columns of <code class="code">R=ReductionMatrixDownto(f)</code> followed by the columns of identity matrix <span class="SimpleMath">I</span>.</p>
+
+<p><a id="X7CFC3ADD7BBC97E7" name="X7CFC3ADD7BBC97E7"></a></p>
+
+<h5>1.3-4 MatrixU</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixU</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixUi</code>( <var class="Arg">B</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">MatrixU</code> returns the $m\times m$ matrix <span class="SimpleMath">U</span> with components <span class="SimpleMath">u_i,j=[ρ^(j)⋅ A]_(i)</span>. <code class="code">MatrixUi</code> returns the <span class="SimpleMath">i</span>-th component of matrix <span class="SimpleMath">U</span>. REF to Generalized Algo section for details!!!!</p>
+
+<p><a id="X7DCAF3587EFF8ACD" name="X7DCAF3587EFF8ACD"></a></p>
+
+<h5>1.3-5 MatrixM</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixM</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MatrixMi</code>( <var class="Arg">B</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">MatrixM</code> returns the <span class="SimpleMath">m× m</span> matrix <span class="SimpleMath">M</span> with components <span class="SimpleMath">m_j,k=[β^2^j+2^k]</span> w.r.t. the normal basis <span class="SimpleMath">B={β, β^2,dots,β^2^m-1}}</span>. <code class="code">MatrixMi</code> returns the <span class="SimpleMath">i</span>-th component of matrix <span class="SimpleMath">M</span>. REF to Massey-Omura Algo section for details!!!!</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

@@ -1,0 +1,80 @@
+  
+  [1X4 [33X[0;0YAlgorithms[133X[101X
+  
+  
+  [1X4.1 [33X[0;0YAuxiliary functions[133X[101X
+  
+  [1X4.1-1 ChooseFieldElm[101X
+  
+  [33X[1;0Y[29X[2XChooseFieldElm[102X( [3XF[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XChooseFieldElmdownto[102X( [3XF[103X ) [32X function[133X
+  
+  [33X[0;0YIn  order  to generate the expressions for hardware implementations, the GAP
+  variables  $a_i,  b_j$ need to be created for symbollic computatioin. Method
+  [10XChooseFieldElms[110X    prepares    vectors    [22Xavec=[a_0,    dots    ,    a_m-1][122X,
+  [22Xbvec=[b_0,dots,b_m-1][122X,  and  [22Xdvec=[d_0,dots,d_2m-2][122X,  with default direction
+  {\tt  To},  where  [22Xm=[F:K][122X is the degree of extension. Vector [22Xdvec[122X is needed
+  for the two-step classic multiplication.[133X
+  
+  [33X[0;0YMethod  [10XChooseFieldElmsDownto[110X  creates  vectors  [22Xavec=[a_m-1,  dots  , a_0][122X,
+  [22Xbvec=[b_m-1, dots , b_0][122X, and [22Xdvec=[d_2m-2,dots,d_0][122X, with default direction
+  {\tt To}, Note that [22Xa_i, b_j, d_k[122X are not coefficients, but GAP variables to
+  allow symbolic computation.[133X
+  
+  [1X4.1-2 SLL[101X
+  
+  [33X[1;0Y[29X[2XSLL[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XSRL[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XSLA[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XSRA[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XROL[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XROR[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XANDbw[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XXORbw[102X( [3Xvec[103X, [3Xi[103X ) [32X method[133X
+  
+  [33X[0;0YSimple  vector  manipulation functions: left/right logical/arithmetic shift,
+  left/right rotation, bitwise [10XAND[110X, [10XXOR[110X.[133X
+  
+  
+  [1X4.2 [33X[0;0YGenetaring expressions[133X[101X
+  
+  [1X4.2-1 MultEvecMatrix[101X
+  
+  [33X[1;0Y[29X[2XMultEvecMatrix[102X( [3Xvec1[103X, [3XM[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XMultMatrixEvec[102X( [3XM[103X, [3Xvec2[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XMultEvecMatrixEvec[102X( [3Xvec1[103X, [3XM[103X, [3Xvec2[103X ) [32X method[133X
+  
+  [33X[0;0Yleft  and  right  multiplications of vectors and matrices, returning [3Xvec1*M[103X,
+  [3XM*vec2[103X, and [3Xvec1*M*vec2[103X, respectively.[133X
+  
+  [1X4.2-2 MatrixMultByConstExpression[101X
+  
+  [33X[1;0Y[29X[2XMatrixMultByConstExpression[102X( [3XB[103X, [3XC[103X, [3Xvec2[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XMatrixMultByConstExpression[102X( [3XM[103X, [3Xvec2[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XTransitionMatrixExpression[102X( [3XB1[103X, [3XB2[103X, [3Xvec2[103X ) [32X method[133X
+  
+  [1X4.2-3 MatrixExpression[101X
+  
+  [33X[1;0Y[29X[2XMatrixExpression[102X( [3XM[103X, [3Xvec[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XMatrixUExpression[102X( [3XM[103X, [3Xvec2[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XMatrixMExpression[102X( [3XB1[103X, [3XB2[103X, [3Xvec2[103X ) [32X method[133X
+  
+  [1X4.2-4 FFA_mult_convolution[101X
+  
+  [33X[1;0Y[29X[2XFFA_mult_convolution[102X( [3Xavec[103X, [3Xbvec[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XReductionMatrixExpression[102X( [3Xf[103X, [3Xdvec[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XReductionMatrixExpressionDownto[102X( [3Xf[103X, [3Xdvec[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFFA_mult_2stepClassic[102X( [3Xf[103X, [3Xavec[103X, [3Xbvec[103X, [3Xdir[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFFA_mult_2stepClassic[102X( [3Xf[103X, [3Xdir[103X ) [32X method[133X
+  
+  [1X4.2-5 FFA_mult_matrixU[101X
+  
+  [33X[1;0Y[29X[2XFFA_mult_matrixU[102X( [3XB[103X, [3Xavec[103X, [3Xbvec[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFFA_sq_matrixU[102X( [3XB[103X, [3Xavec[103X, [3Xbvec[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFFA_exp_matrixU[102X( [3XB[103X, [3Xavec[103X, [3Xbvec[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFFA_inv_matrixU[102X( [3XB[103X, [3Xavec[103X, [3Xbvec[103X ) [32X method[133X
+  
+  [1X4.2-6 FFA_mult_matrixM[101X
+  
+  [33X[1;0Y[29X[2XFFA_mult_matrixM[102X( [3XB[103X, [3Xavec[103X, [3Xbvec[103X ) [32X method[133X
+  

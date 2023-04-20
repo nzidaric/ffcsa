@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (FFCSA) - Chapter 3: Profiling</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap3"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap3_mj.html">[MathJax on]</a></p>
+<p><a id="X7FDF923D7D2937A1" name="X7FDF923D7D2937A1"></a></p>
+<div class="ChapSects"><a href="chap3.html#X7FDF923D7D2937A1">3 <span class="Heading">Profiling</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X865E2E6479A2554C">3.1 <span class="Heading">Profiling and special elements</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7E3E9B80854CE287">3.1-1 IsONBI</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X833E0F457D1C8789">3.1-2 IsONBII</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X86C4F2827AF0379A">3.1-3 MultiplicationTableT</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X833B1FD08397FCF2">3.1-4 FindONBIGenerator</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X84BADA8A7CC330E5">3.1-5 ProfileNBGenerators</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X851E424084968D9E">3.1-6 ProfileNBtoBTransitionMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X805184147EEAB17D">3.1-7 ProfileGamma</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X78666DEA835F0E70">3.2 <span class="Heading">Profiling and special polynomials</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7AD88F5C7B39500A">3.2-1 FindPrimitivePolyFixedTaps*</a></span>
+</div></div>
+</div>
+
+<h3>3 <span class="Heading">Profiling</span></h3>
+
+<p><a id="X865E2E6479A2554C" name="X865E2E6479A2554C"></a></p>
+
+<h4>3.1 <span class="Heading">Profiling and special elements</span></h4>
+
+<p>The FFCSA package contains a set of profiling methods that are closely linked to the search for <em>special</em> elements and polynomials. The <strong class="pkg">FFCSA</strong> package <em>profiles</em> are always a (set of) Hamming weight(s): a theoretical estimate of area, as was already noted for the <code class="func">WeightMatrix</code> (<a href="chap1.html#X80494B497BA421F9"><span class="RefLink">1.2-4</span></a>) method, or delay, as was noted for the <code class="func">WeightMatrixMaxRow</code> (<a href="chap1.html#X80494B497BA421F9"><span class="RefLink">1.2-4</span></a>). Motivation example <a href="chap1.html#X80316E42822BE09A"><span class="RefLink">1.1-1</span></a> is a search for a small complexity normal basis. The particular normal basis has an impact on complexity of the arithmetic performed with field elements in normal basis representation. Normal bases can be evaluated using <em>complexity</em> <span class="SimpleMath">C_T</span> defined as the number of nonzero elements in <em>multiplication table</em> <span class="SimpleMath">T</span> <a href="chapBib.html#biBmullen">[MP13, (5.3.1)]</a>. Multiplication table T is an <span class="SimpleMath">(m× m)</span> matrix <span class="SimpleMath">T=[t_ij]</span> over <span class="SimpleMath">F_q</span>, defined for a particular normal element <span class="SimpleMath">α∈ F_2^m</span>, in such a way that the coefficients <span class="SimpleMath">t_ij</span> satisfy</p>
+
+<p class="pcenter">
+\alpha\cdot\alpha^{q^i}=\sum_{j=0}^{m-1} t_{ij}\alpha^{q^j}
+\quad {\rm for }\quad  0\leq i\leq m-1.
+</p>
+
+<p>The complexity is bounded by <span class="SimpleMath">2m-1≤ C_T≤ m^2-m+1</span>, and when <span class="SimpleMath">C_T=2m-1</span> the basis is said to be \emph{optimal normal basis}, abbreviated ONB <a href="chapBib.html#biBmullen">[MP13, (5.2.5)]</a>.</p>
+
+<p><a id="X7E3E9B80854CE287" name="X7E3E9B80854CE287"></a></p>
+
+<h5>3.1-1 IsONBI</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsONBI</code>( <var class="Arg">m</var>, <var class="Arg">q</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsONBI</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>Based on <a href="chapBib.html#biBmullen">[MP13, (5.3.6)]</a> and <a href="chapBib.html#biBdesch">[Des09, (8.6)]</a> the following condition on <span class="SimpleMath">m</span> and <span class="SimpleMath">q</span> is used to determine if an optimal normalbasis of type I exists for the finite field <span class="SimpleMath">F_q^m/ F_q</span>:</p>
+
+
+<ul>
+<li><p><span class="SimpleMath">m+1</span> is a prime and</p>
+
+</li>
+<li><p><span class="SimpleMath">q</span> is a primitive element modulo <span class="SimpleMath">m+1</span>,</p>
+
+</li>
+</ul>
+<p>computed using <code class="func">IsPrimitiveRootMod</code> (<a href="../../../doc/ref/chap15.html#X790466C07BD90E20"><span class="RefLink">Reference: IsPrimitiveRootMod</span></a>) (i.e., the multiplicative order of <span class="SimpleMath">q</span> modulo <span class="SimpleMath">m+1</span> is <span class="SimpleMath">m</span>).</p>
+
+<p><a id="X833E0F457D1C8789" name="X833E0F457D1C8789"></a></p>
+
+<h5>3.1-2 IsONBII</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsONBII</code>( <var class="Arg">m</var>, <var class="Arg">q</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsONBII</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns true or false. Based on <a href="chapBib.html#biBmullen">[MP13, (5.3.6)]</a> and <a href="chapBib.html#biBdesch">[Des09, (8.6)]</a> the following condition on <span class="SimpleMath">m</span> and <span class="SimpleMath">q</span> is used to determine if an optimal normalbasis of type I exists for the finite field <span class="SimpleMath">F_2^m/ F_2</span>:</p>
+
+
+<ul>
+<li><p><span class="SimpleMath">2m+1</span> is a prime and</p>
+
+</li>
+<li><p>either</p>
+
+
+<ul>
+<li><p><span class="SimpleMath">2</span> is a primitive element modulo <span class="SimpleMath">2m+1</span>, or</p>
+
+</li>
+<li><p><span class="SimpleMath">2m+1≡ 3mod 4</span> and multiplicative order of 2 modulo <span class="SimpleMath">2m+1</span> is <span class="SimpleMath">m</span>,</p>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>computed using <code class="func">IsPrimitiveRootMod</code> (<a href="../../../doc/ref/chap15.html#X790466C07BD90E20"><span class="RefLink">Reference: IsPrimitiveRootMod</span></a>) and <code class="func">OrderMod</code> (<a href="../../../doc/ref/chap15.html#X82373F3D8277EE9E"><span class="RefLink">Reference: OrderMod</span></a>).</p>
+
+<p><a id="X86C4F2827AF0379A" name="X86C4F2827AF0379A"></a></p>
+
+<h5>3.1-3 MultiplicationTableT</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MultiplicationTableT</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ComplexityOfT</code>( <var class="Arg">T</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">MultiplicationTableT</code> returns the multiplication table for the first element in basis <var class="Arg">B</var>.</p>
+
+<p><code class="code">ComplexityOfT</code> returns the number of nonzero entries in <var class="Arg">T</var> using <code class="func">WeightMatrix</code> (<a href="chap1.html#X80494B497BA421F9"><span class="RefLink">1.2-4</span></a>).</p>
+
+<p><a id="X833B1FD08397FCF2" name="X833B1FD08397FCF2"></a></p>
+
+<h5>3.1-4 FindONBIGenerator</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindONBIGenerator</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindONBIGeneratorB</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindONBIIGenerator</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindONBIIGeneratorB</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>return the normal element generating the ONB of Type-I or Type-II for the field <var class="Arg">F</var>, respectively.</p>
+
+<p><a id="X84BADA8A7CC330E5" name="X84BADA8A7CC330E5"></a></p>
+
+<h5>3.1-5 ProfileNBGenerators</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ProfileNBGenerators</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindSmallestTNBGenerator</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">ProfileNBGenerators</code> finds all normal elements of the finite field <var class="Arg">F</var> and lists their profile <code class="code">[c, e]</code>, where <code class="code">e</code> is the current exponent and <code class="code">c</code> the <code class="func">ComplexityOfT</code> (<a href="chap3.html#X86C4F2827AF0379A"><span class="RefLink">3.1-3</span></a>) of the normal basis generated by the normal element <span class="SimpleMath">g^e</span>, where <span class="SimpleMath">g</span> is the generator of <var class="Arg">F</var>.</p>
+
+<p><code class="code">FindSmallestTNBGenerator</code> uses the profile to return the element <span class="SimpleMath">g^e</span> with the smallest value <span class="SimpleMath">C_T</span>. It is a solution to the motivational example <a href="chap1.html#X80316E42822BE09A"><span class="RefLink">1.1-1</span></a>.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F := GF(2^7);; B := Basis(F);; FindNormalFFEsIgnoreConjugates(F);</span>
+[ 13, 19, 21, 27, 31, 43, 63 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ProfileNBGenerators(F);</span>
+[ [ 13, 19 ], [ 19, 27 ], [ 21, 21 ], [ 27, 27 ], [ 31, 25 ], [ 43, 21 ],
+[ 63, 21 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FindSmallestTNBGenerator(F);</span>
+Z(2^7)^13
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FindSmallestTNBGenerator(GF(2,11));</span>
+Z(2^11)^439
+
+</pre></div>
+
+<p><a id="X851E424084968D9E" name="X851E424084968D9E"></a></p>
+
+<h5>3.1-6 ProfileNBtoBTransitionMat</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ProfileNBtoBTransitionMat</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindSmallestAreaNBtoBProfile</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">ProfileNBtoBTransitionMat</code> finds all normal elements of the field <var class="Arg">F</var>, generates their normal bases <code class="code">NB</code>, and computes their profile <code class="code">[d1, A1, d2, A2, e]</code> for the given basis <var class="Arg">B</var>. Value <code class="code">e</code> is the exponent of the normal element, <code class="code">d1, A1</code> are the delay and area of the <span class="SimpleMath">NB→ B</span> transition matrix, and <code class="code">d2, A2</code> are the delay and area of the inverse transition matrix <span class="SimpleMath">B → NB</span>. Methods <code class="func">TransitionMatrix</code> (<a href="chap1.html#X7CAE164D875865E3"><span class="RefLink">1.3-2</span></a>) and <code class="func">WeightMatrixBoth</code> (<a href="chap1.html#X80494B497BA421F9"><span class="RefLink">1.2-4</span></a>) are used to compute the profile. <code class="code">FindSmallestAreaNBtoBProfile</code> returns the profile with the smallest <code class="code">A1+A2</code> w.r.t. the given $B$. If two profiles have the same cumulative area, the delays are used as a secondary criterion, and if there is still a deuce, the profile with the smallest <code class="code">e</code> is chosen.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F := GF(2^7);; B := Basis(F);; FindNormalFFEsIgnoreConjugates(F);</span>
+[ 13, 19, 21, 27, 31, 43, 63 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lambda := RootOfDefiningPolynomial(F); B := GeneratePB(F, lambda);</span>
+Z(2^7)
+Basis( GF(2^7), [ Z(2)^0, Z(2^7), Z(2^7)^2, Z(2^7)^3, Z(2^7)^4, Z(2^7)^5,
+Z(2^7)^6 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ProfileNBtoBTransitionMat(B);</span>
+[ [ 7, 29, 7, 31, 13 ], [ 7, 33, 6, 25, 19 ], [ 7, 33, 6, 27, 21 ],
+[ 7, 27, 6, 33, 27 ], [ 7, 31, 6, 29, 31 ], [ 7, 27, 5, 27, 43 ],
+[ 7, 25, 6, 33, 63 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FindSmallestAreaNBtoBProfile(B);</span>
+[ 7, 27, 5, 27, 43 ]
+
+</pre></div>
+
+<p><a id="X805184147EEAB17D" name="X805184147EEAB17D"></a></p>
+
+<h5>3.1-7 ProfileGamma</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ProfileGamma</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindSmallestAreaGamma</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindSmallestDelayGamma</code>( <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">ProfileGamma</code> computes the profiles for constants <span class="SimpleMath">g^e_i</span>, <span class="SimpleMath">i=1, 2, dots</span>, where <span class="SimpleMath">e_i</span> are the exponents and <span class="SimpleMath">g</span> is the generator of the finite <var class="Arg">F</var>. Only the coset leaders are used as exponents. The profile <code class="code">[d, A, e1, e2, \dots]</code>, where <code class="code">d</code> and <code class="code">A</code> are the delay and area of the matrix-vector multipliers, is grouped by exponents when the delay and area of their corresponding matrices are the same. The multipliers are obtained with <code class="func">MatrixMultByConst</code> (<a href="chap1.html#X78795F187AB43268"><span class="RefLink">1.3-1</span></a>).</p>
+
+<p>Methods <code class="code">FindSmallestAreaGamma</code> and <code class="code">FindSmallestDelayGamma</code> return the constants that fit the given criteria.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F := GF(2^7);; B := Basis(F);; FindNormalFFEsIgnoreConjugates(F);</span>
+[ 13, 19, 21, 27, 31, 43, 63 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := GeneratorOfField(F);; NB := GenerateNB(F, g^43);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">profile := ProfileGamma(NB);; for i in profile do Display(i); od;</span>
+[ 4, 20, 1, 11 ]
+[ 4, 22, 3 ]
+[ 5, 24, 5 ]
+[ 4, 19, 7, 47 ]
+[ 5, 26, 9 ]
+[ 5, 27, 13 ]
+[ 6, 26, 15, 23 ]
+[ 6, 31, 19 ]
+[ 7, 29, 21 ]
+[ 6, 23, 27 ]
+[ 6, 32, 29 ]
+[ 5, 29, 31 ]
+[ 4, 21, 43 ]
+[ 6, 28, 55 ]
+[ 5, 25, 63 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FindSmallestAreaGamma(NB);</span>
+Z(2^7)^7
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FindSmallestDelayGamma(NB);</span>
+Z(2^7)^7
+
+</pre></div>
+
+<p><a id="X78666DEA835F0E70" name="X78666DEA835F0E70"></a></p>
+
+<h4>3.2 <span class="Heading">Profiling and special polynomials</span></h4>
+
+<p><a id="X7AD88F5C7B39500A" name="X7AD88F5C7B39500A"></a></p>
+
+<h5>3.2-1 FindPrimitivePolyFixedTaps*</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindPrimitivePolyFixedTaps*</code>( <var class="Arg">of</var>, <var class="Arg">F</var>, <var class="Arg">poly</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindPrimitivePolyFixedMinArea*</code>( <var class="Arg">of</var>, <var class="Arg">F</var>, <var class="Arg">poly</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindPrimitivePolyFixedMinDelay*</code>( <var class="Arg">of</var>, <var class="Arg">F</var>, <var class="Arg">poly</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

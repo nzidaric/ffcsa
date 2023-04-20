@@ -1,1 +1,146 @@
-Placeholder
+  
+  
+                                     [1X[5XFFCSA[105X[101X
+  
+  
+               [1XFinite Field Constructions, Search and Algorithms[101X
+  
+  
+                                 Version 0.9.4
+  
+  
+                                 20 April 2023
+  
+  
+                                  Nusa Zidaric
+  
+  
+  
+  Nusa Zidaric
+      Email:    [7Xmailto:nzidaric@uwaterloo.ca[107X
+  
+  -------------------------------------------------------
+  [1XAbstract[101X
+  [33X[0;0YThe  [5XGAP[105X  package  [5XFFCSA[105X was designed for implementations of (cryptographic)
+  hardware  based  on  finite  field  arithmetic,  and  is a crucial part of a
+  framework  for  automated  synthesis  and  Design  Space  Exploration (DSE).
+  Coceptually,  [5XFFCSA[105X is divided into three parts: finite field constructions,
+  search  algorithms and arithmetic algorithms. Search is further divided into
+  search for field elements and for polynomials, that meet specified criteria.
+  This  criteria  can be general (a normal element, an irreducible polynomial,
+  etc.),  or specialized (the smallest area or delay, number of tap positions,
+  \eetc).  The  connection  between  representation  of  elements and hardware
+  efficiency  has been known for a long time; one of the eariest explamples is
+  the  use  of  normal  bases  for  algorithms heavy on exponentiations to the
+  powers  of  2.  [5XFFCSA[105X currently supports polynomial bases, normal bases, and
+  their  dual  bases. When generating the tower field bases, different options
+  are  possible,  using  either the same type of basis on each level, or mixed
+  bases, e.g., polynomial basis on one level and normal basis on the next. The
+  third  part  consists  of the algorithms, or rather, a collection of methods
+  that  generate the expressions required to implement an arithmetic operation
+  according  to  a  specified algorithm, parametrized for the current instance
+  (defining polynomial, a basis, etc.). Many different algorithms are known in
+  literature.  The package supports basic functionality, i.e., the generalized
+  algorithm    for   multiplication.   It   can   generate   expressions   for
+  multiplications,  arbitrary  exponentiations, matrix-vector multipliers, and
+  some  special  cases,  e.g.,  the  expression for the trace computation. The
+  [5XFFCSA[105X  package is designed to be easily extendable with new algorithms, some
+  of  which  are  more  suitable for sequential and some for parallel hardware
+  implementations.  Using  [5XGAP[105X  to implement [5XFFCSA[105X, thus as the entry point to
+  DSE, brings the awareness of underlying structures to the hardware synthesis
+  flow.[133X
+  
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© by Nusa Zidaric[133X
+  
+  [33X[0;0Y[5XFFCSA[105X  is  free software; you can redistribute it and/or modify it under the
+  terms  of  the  GNU General Public License as published by the Free Software
+  Foundation;  either  version 2 of the License, or (at your option) any later
+  version.      For      details,      see      the     FSF's     own     site
+  [7Xhttp://www.gnu.org/licenses/gpl.html[107X.[133X
+  
+  [33X[0;0YIf you obtained [5XFFCSA[105X, we would be grateful for a short notification sent to
+  the  author.  If  you publish a result which was partially obtained with the
+  usage of [5XFFCSA[105X, please cite it in the following form:[133X
+  
+  [33X[0;0YZidaric,  N.,  FFCSA,  Finite  Field  Constructions,  Search and Algorithms,
+  Version 1.0.4 (2023)[133X
+  
+  [33X[0;0YAcknowledgements: Mark Aagaard and Guang Gong[133X
+  
+  
+  -------------------------------------------------------
+  [1XAcknowledgements[101X
+  [33X[0;0YBy  Nusa  Zidaric: This work started as a part of my thesis. I would like to
+  thank my supervisors, Dr. Mark Aagaard and Dr. Guang Gong. For the countless
+  hours  of  discussions,  which  contributed to the contents and structure of
+  this package. I would like to thank Dr. Aledandar Jurisic for introducing me
+  to  finite fields and always lending a help on this subject. I would like to
+  thank  Dr.  Olexandr  Konovalov for his advice during package implementation
+  and reslease, neither of which would be possible without his help.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (FFCSA)[101X
+  
+  1 [33X[0;0YIntroduction and First Methods[133X
+    1.1 [33X[0;0YMotivation and basic funtionality[133X
+      1.1-1 [33X[0;0YA small complexity normal basis[133X
+      1.1-2 [33X[0;0YA small complexity transition matrix[133X
+      1.1-3 [33X[0;0YA finite field multiplier[133X
+    1.2 [33X[0;0YMiscellaneous and Weight methods[133X
+      1.2-1 PolyPhi
+      1.2-2 NrNormalFFE
+      1.2-3 NrIrreduciblePoly
+      1.2-4 WeightMatrixBoth
+      1.2-5 WeightPolynomial
+    1.3 [33X[0;0YMatrices for matrix-vector multipliers[133X
+      1.3-1 MatrixMultByConst
+      1.3-2 TransitionMatrix
+      1.3-3 ReductionMatrix
+      1.3-4 MatrixU
+      1.3-5 MatrixM
+  2 [33X[0;0YConstructions and representations[133X
+    2.1 [33X[0;0YSearching for polynomials and elements[133X
+      2.1-1 FindPrimitivePolyAll
+      2.1-2 IsNormalFFE
+      2.1-3 FindNormalFFEs
+    2.2 [33X[0;0YGenerating different bases[133X
+      2.2-1 GeneratePB
+      2.2-2 IsDualBasisPair
+      2.2-3 [33X[0;0YFinding a dual basis to normal basis[133X
+      2.2-4 GenerateDBtoNB
+      2.2-5 [33X[0;0YFinding a dual basis to polynomial basis[133X
+      2.2-6 GenerateDBtoPB
+    2.3 [33X[0;0YTower field constructions[133X
+      2.3-1 GenerateTFBfromEBlist
+      2.3-2 FindEDPLAllfromEDL
+  3 [33X[0;0YProfiling[133X
+    3.1 [33X[0;0YProfiling and special elements[133X
+      3.1-1 IsONBI
+      3.1-2 IsONBII
+      3.1-3 MultiplicationTableT
+      3.1-4 FindONBIGenerator
+      3.1-5 ProfileNBGenerators
+      3.1-6 ProfileNBtoBTransitionMat
+      3.1-7 ProfileGamma
+    3.2 [33X[0;0YProfiling and special polynomials[133X
+      3.2-1 FindPrimitivePolyFixedTaps*
+  4 [33X[0;0YAlgorithms[133X
+    4.1 [33X[0;0YAuxiliary functions[133X
+      4.1-1 ChooseFieldElm
+      4.1-2 SLL
+    4.2 [33X[0;0YGenetaring expressions[133X
+      4.2-1 MultEvecMatrix
+      4.2-2 MatrixMultByConstExpression
+      4.2-3 MatrixExpression
+      4.2-4 FFA_mult_convolution
+      4.2-5 FFA_mult_matrixU
+      4.2-6 FFA_mult_matrixM
+  
+  
+  [32X

@@ -1,11 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<title>Placeholder</title>
+<title>GAP (FFCSA) - Contents</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
 </head>
-<body>
-<h1>Placeholder!</h1>
-<a href="..">Back</a>
+<body class="chap0"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap0_mj.html">[MathJax on]</a></p>
+<p><a id="X7D2C85EC87DD46E5" name="X7D2C85EC87DD46E5"></a></p>
+<div class="pcenter">
+
+<h1><strong class="pkg">FFCSA</strong></h1>
+
+
+<h2>Finite Field Constructions, Search and Algorithms</h2>
+
+<p>Version 0.9.4</p>
+
+<p>20 April 2023</p>
+
+</div>
+<p><b>Nusa Zidaric
+    
+  </b>
+<br />Email: <span class="URL"><a href="mailto:nzidaric@uwaterloo.ca">nzidaric@uwaterloo.ca</a></span>
+</p>
+
+<p><a id="X7AA6C5737B711C89" name="X7AA6C5737B711C89"></a></p>
+<h3>Abstract</h3>
+<p>The <strong class="pkg">GAP</strong> package <strong class="pkg">FFCSA</strong> was designed for implementations of (cryptographic) hardware based on finite field arithmetic, and is a crucial part of a framework for automated synthesis and Design Space Exploration (DSE). Coceptually, <strong class="pkg">FFCSA</strong> is divided into three parts: finite field constructions, search algorithms and arithmetic algorithms. Search is further divided into search for field elements and for polynomials, that meet specified criteria. This criteria can be general (a normal element, an irreducible polynomial, etc.), or specialized (the smallest area or delay, number of tap positions, \eetc). The connection between representation of elements and hardware efficiency has been known for a long time; one of the eariest explamples is the use of normal bases for algorithms heavy on exponentiations to the powers of 2. <strong class="pkg">FFCSA</strong> currently supports polynomial bases, normal bases, and their dual bases. When generating the tower field bases, different options are possible, using either the same type of basis on each level, or mixed bases, e.g., polynomial basis on one level and normal basis on the next. The third part consists of the algorithms, or rather, a collection of methods that generate the expressions required to implement an arithmetic operation according to a specified algorithm, parametrized for the current instance (defining polynomial, a basis, etc.). Many different algorithms are known in literature. The package supports basic functionality, i.e., the generalized algorithm for multiplication. It can generate expressions for multiplications, arbitrary exponentiations, matrix-vector multipliers, and some special cases, e.g., the expression for the trace computation. The <strong class="pkg">FFCSA</strong> package is designed to be easily extendable with new algorithms, some of which are more suitable for sequential and some for parallel hardware implementations. Using <strong class="pkg">GAP</strong> to implement <strong class="pkg">FFCSA</strong>, thus as the entry point to DSE, brings the awareness of underlying structures to the hardware synthesis flow.</p>
+
+<p><a id="X81488B807F2A1CF1" name="X81488B807F2A1CF1"></a></p>
+<h3>Copyright</h3>
+<p>© by Nusa Zidaric</p>
+
+<p><strong class="pkg">FFCSA</strong> is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. For details, see the FSF's own site <span class="URL"><a href="http://www.gnu.org/licenses/gpl.html">http://www.gnu.org/licenses/gpl.html</a></span>.</p>
+
+<p>If you obtained <strong class="pkg">FFCSA</strong>, we would be grateful for a short notification sent to the author. If you publish a result which was partially obtained with the usage of <strong class="pkg">FFCSA</strong>, please cite it in the following form:</p>
+
+<p>Zidaric, N., FFCSA, Finite Field Constructions, Search and Algorithms, Version 1.0.4 (2023)</p>
+
+<p>Acknowledgements: Mark Aagaard and Guang Gong</p>
+
+<p><a id="X82A988D47DFAFCFA" name="X82A988D47DFAFCFA"></a></p>
+<h3>Acknowledgements</h3>
+<p>By Nusa Zidaric: This work started as a part of my thesis. I would like to thank my supervisors, Dr. Mark Aagaard and Dr. Guang Gong. For the countless hours of discussions, which contributed to the contents and structure of this package. I would like to thank Dr. Aledandar Jurisic for introducing me to finite fields and always lending a help on this subject. I would like to thank Dr. Olexandr Konovalov for his advice during package implementation and reslease, neither of which would be possible without his help.</p>
+
+<p><a id="X8537FEB07AF2BEC8" name="X8537FEB07AF2BEC8"></a></p>
+
+<div class="contents">
+<h3>Contents<a id="contents" name="contents"></a></h3>
+
+<div class="ContChap"><a href="chap1.html#X781F85CE87635EA3">1 <span class="Heading">Introduction and First Methods</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7F05D84378AD67C5">1.1 <span class="Heading">Motivation and basic funtionality</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X80316E42822BE09A">1.1-1 <span class="Heading">A small complexity normal basis</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X83E93B5B860E2EA0">1.1-2 <span class="Heading">A small complexity transition matrix</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7B7E152878F89B5C">1.1-3 <span class="Heading">A finite field multiplier</span></a>
+</span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7B16F86879EB8FF9">1.2 <span class="Heading">Miscellaneous and Weight methods</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X83965BC084D204B3">1.2-1 PolyPhi</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X788C6C72864595F8">1.2-2 NrNormalFFE</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X847B7D4B7B0A2DDF">1.2-3 NrIrreduciblePoly</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X80494B497BA421F9">1.2-4 WeightMatrixBoth</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X810AC2EF86BE4090">1.2-5 WeightPolynomial</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7C6473467EBB23F0">1.3 <span class="Heading">Matrices for matrix-vector multipliers</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X78795F187AB43268">1.3-1 MatrixMultByConst</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7CAE164D875865E3">1.3-2 TransitionMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7B81F2967EADDAE1">1.3-3 ReductionMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7CFC3ADD7BBC97E7">1.3-4 MatrixU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7DCAF3587EFF8ACD">1.3-5 MatrixM</a></span>
+</div></div>
+</div>
+<div class="ContChap"><a href="chap2.html#X84DAAC2482BCA4F7">2 <span class="Heading">Constructions and representations</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X869CFEEB854E04BB">2.1 <span class="Heading">Searching for polynomials and elements</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X786824597C2B2E6B">2.1-1 FindPrimitivePolyAll</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84E3FB997E326FB6">2.1-2 IsNormalFFE</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X819E05CC7E2A9BCC">2.1-3 FindNormalFFEs</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8140AE177EDDB0CE">2.2 <span class="Heading">Generating different bases</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E84A926875DA85D">2.2-1 GeneratePB</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B15C8BA831D2B35">2.2-2 IsDualBasisPair</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7DD91C117DBF6BA3">2.2-3 <span class="Heading">Finding a dual basis to normal basis</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84C7354E78D91C19">2.2-4 GenerateDBtoNB</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X78E2410178F6877A">2.2-5 <span class="Heading">Finding a dual basis to polynomial basis</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X798326B37C3706BF">2.2-6 GenerateDBtoPB</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8653C67182AC5F23">2.3 <span class="Heading">Tower field constructions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8705F08E81E53A1E">2.3-1 GenerateTFBfromEBlist</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81C1F4617AEDBFCD">2.3-2 FindEDPLAllfromEDL</a></span>
+</div></div>
+</div>
+<div class="ContChap"><a href="chap3.html#X7FDF923D7D2937A1">3 <span class="Heading">Profiling</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X865E2E6479A2554C">3.1 <span class="Heading">Profiling and special elements</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7E3E9B80854CE287">3.1-1 IsONBI</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X833E0F457D1C8789">3.1-2 IsONBII</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X86C4F2827AF0379A">3.1-3 MultiplicationTableT</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X833B1FD08397FCF2">3.1-4 FindONBIGenerator</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X84BADA8A7CC330E5">3.1-5 ProfileNBGenerators</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X851E424084968D9E">3.1-6 ProfileNBtoBTransitionMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X805184147EEAB17D">3.1-7 ProfileGamma</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X78666DEA835F0E70">3.2 <span class="Heading">Profiling and special polynomials</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7AD88F5C7B39500A">3.2-1 FindPrimitivePolyFixedTaps*</a></span>
+</div></div>
+</div>
+<div class="ContChap"><a href="chap4.html#X85FBC8467CFA2980">4 <span class="Heading">Algorithms</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X866E18057EF83F65">4.1 <span class="Heading">Auxiliary functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7AB8209E82B890B7">4.1-1 ChooseFieldElm</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X84C4CE847D63E01F">4.1-2 SLL</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X8132CDE27D0B95F1">4.2 <span class="Heading">Genetaring expressions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7B16068181BA738E">4.2-1 MultEvecMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X79921E577C6EBE14">4.2-2 MatrixMultByConstExpression</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X84E32BBB834FC3AB">4.2-3 MatrixExpression</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7AB044D97D8A033C">4.2-4 FFA_mult_convolution</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7E43360F7DE56D7E">4.2-5 FFA_mult_matrixU</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7F75FF8A84B62763">4.2-6 FFA_mult_matrixM</a></span>
+</div></div>
+</div>
+<div class="ContChap"><a href="chapBib.html"><span class="Heading">References</span></a></div>
+<br />
+</div>
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
 </body>
 </html>

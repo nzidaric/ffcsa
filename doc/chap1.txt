@@ -1,0 +1,225 @@
+  
+  [1X1 [33X[0;0YIntroduction and First Methods[133X[101X
+  
+  
+  [1X1.1 [33X[0;0YMotivation and basic funtionality[133X[101X
+  
+  [33X[0;0YThe  following  short  examples  (Examples \ref{ex6.1}-\ref{ex6.3}) show the
+  interplay  of  different  parts  of the [5XFFCSA[105X package and provide an insight
+  into  its structure. They illustrate the basic functionality of the package:
+  the  constructions,  the  search  and  the algorithms. The [5XFFCSA[105X methods are
+  tasked  with  finding  (special)  elements,  finding  (special) polynomials,
+  generating  matrices  and  bases,  computing  Hamming  weights, and finally,
+  obtaining  expressions for finite field arithmetic algorithms. The search is
+  closely  linked to the Design Space Exploration (DSE), theoretical estimates
+  (naive methods such as Hamming weights, but will be extended in the future),
+  and  can be used to make certain architectural decisions early in the design
+  flow. Below we list a few motivational examples.[133X
+  
+  
+  [1X1.1-1 [33X[0;0YA small complexity normal basis[133X[101X
+  
+  [33X[0;0YA small complexity normal basis is believed to yield smaller hardware w.r.t.
+  a  normal  basis  with higher complexity [MOVW88]. A small complexity normal
+  basis  can  be  found  with exhaustive search, which requires several steps:
+  (i.)  find  the  normal elements, (ii.) build their multiplication tables T,
+  (iii.)  compute  the Hamming weights of tables T, and (iv.) find the minimum
+  Hamming Weight T. This example is covered in more detail in [14X3.1[114X.[133X
+  
+  
+  [1X1.1-2 [33X[0;0YA small complexity transition matrix[133X[101X
+  
+  [33X[0;0YAnother  more  complex example is a finite field for which no optimal normal
+  bases  exist,  for  example  [22XF_2^16}[122X,  but  the  algorithm requires a lot of
+  exponentiations  to  powers of two. Normal bases are very convenient for the
+  exponentiations.   However,  a  tower  field  basis  is  more  suitable  for
+  multiplications  and  inversions:  the  search  criterion is to minimize the
+  Hamming  Weights  of  the transition matrices between tower field and normal
+  bases.  A  less  obvious middle step is constructing the tower field itself,
+  requiring  (a  search  for)  an irreducible polynomial for the next level at
+  each  level  of  the  tower.  This  example  is  covered  in  more detail in
+  Section~REF!!![133X
+  
+  
+  [1X1.1-3 [33X[0;0YA finite field multiplier[133X[101X
+  
+  [33X[0;0YLast  but  not  least is the generation of expressions used for the hardware
+  implementations,   e.g.,   finite  field  multiplication.  Specifically,  to
+  implement  a  [22XF_2^4}[122X  multiplier,  the following steps are performed: (i.) a
+  specific  defining  polynomial  of  degree  4  is obtained by the search for
+  defining  polynomials,  (ii.)  the  polynomial  basis  with  the root of the
+  defining  polynomial is generated, (iii.) then matrix U [Has17] is generated
+  for  this  basis using a vector of variables [22X[a_0, a_1, a_2, a_3][122X, and (vi.)
+  the  expressions  for  the  4  components  of  the  product  are obtained by
+  multiplying  the  matrix  U  (with  indeterminates  [22Xa_i[122X)  with the vector of
+  variables [22X[b_0, b_1, b_2, b_3][122X. Details are given in Section~REF!!![133X
+  
+  [33X[0;0YHowever, theoretically optimal does not neccesarily yield the best hardware.
+  There  are  application  considerations, ... And finally, there are physical
+  limitations  that affect architectural decisions. For example, subexpression
+  elimination will yield smallest area profile for a hardware module, but once
+  implemented,  long  propagation delays and routing congestions can case this
+  hardware  module  to  be  inferior  to  a  module containing an copy of this
+  subexpression.[133X
+  
+  
+  [1X1.2 [33X[0;0YMiscellaneous and Weight methods[133X[101X
+  
+  [1X1.2-1 PolyPhi[101X
+  
+  [33X[1;0Y[29X[2XPolyPhi[102X( [3XK[103X, [3Xf[103X ) [32X method[133X
+  
+  [33X[0;0YBased  on [MP13, (2.1.111)] and For [22Xf∈ F_q[x][122X, the finite field polynomial [22XΦ[122X
+  function,  [22XΦ_q(f)[122X,  denotes the number of polynomials over [22XF_q[122X, which are of
+  smaller  degree than degree of [3Xf[103X and which are relatively prime to [3Xf[103X. Method
+  [2XPolyPhi[102X  is implemented using properties of [22XΦ_q[122X and the existing GAP methods
+  [2XFactors[102X  ([14XReference: Factors[114X) and [2XPolynomialRing[102X ([14XReference: PolynomialRing[114X)
+  [GAP22,  (66.10-1)]  and  [GAP22,  (66.15-1)]. to obtain factorization [22Xf=∏_i
+  f_i^c_i[122X, where [22Xf_i[122X are irreducible, [22Xdeg(f_i)=n_i[122X and [22Xc_i[122X is the multiplicity
+  of [22Xf_i[122X. Properties of [22XΦ_q[122X used [MBG+92, (pp.9)]:[133X
+  
+  [30X    [33X[0;6Yif [22Xgcd(f_i, f_j)=1[122X then [22XΦ_q(f_if_j)=Φ_q(f_i)Φ_q(f_j)[122X[133X
+  
+  [30X    [33X[0;6Yif   [22Xf_i[122X   is   irreducible   of   degree   [22Xn_i[122X   then   [22XΦ_q(f_i^c_i)=
+        q^n_ic_i-q^n_i(c_i-1)[122X[133X
+  
+  [1X1.2-2 NrNormalFFE[101X
+  
+  [33X[1;0Y[29X[2XNrNormalFFE[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XNrNormalFFEIgnoreConjugates[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XNrNormalFFE[110X  returns  the  number  of  normal elements in field extension of
+  degree  [3Xm[103X over the finite field [3XK[103X[22X= F_q[122X using method [2XPolyPhi[102X ([14X1.2-1[114X), that is
+  the polynomial [22XΦ_q[122X function, on [3XK[103X and [22Xx^m-1[122X: [22XΦ_q(x^m-1)[122X [MP13, (5.2.8)].[133X
+  
+  [33X[0;0Y[10XNrNormalFFEIgnoreConjugates[110X returns [22Xfrac1mΦ_q(x^m-1)[122X [MBG+92, (4.14)].[133X
+  
+  [1X1.2-3 NrIrreduciblePoly[101X
+  
+  [33X[1;0Y[29X[2XNrIrreduciblePoly[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XNrPrimitivePoly[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XNrIrreducibleNotPrimitivePoly[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XNrIrreduciblePoly[110X  returns  the  number  of monic irreducible polynomials of
+  degree     [3Xm[103X     over     the     finite     field     [3XK[103X,     computed    as
+  [23XI_q(m)=\frac{1}{m}\sum_{d|m}\mu(d)q^{\frac{m}{d}}[123X  by [MP13, (3.1.2)], where
+  [22Xμ[122X is the Mobius function [2XMoebiusMu[102X ([14XReference: MoebiusMu[114X) [GAP22, (15.5-3)].[133X
+  
+  [33X[0;0Y[10XNrPrimitivePoly[110X returns the number of primitive polynomials of degree [3Xm[103X over
+  the    finite    field    [3XK[103X,    computed   using   Euler   [22Xϕ[122X   function   as
+  [23X\frac{1}{m}{\Phi}(q^m-1)[123X  [MP13, (4.1.3)], where [22XΦ[122X is the Euler function [2XPhi[102X
+  ([14XReference: Phi[114X) [GAP22, (15.2-2)].[133X
+  
+  [33X[0;0Y[10XNrIreducibleNotPrimitivePoly[110X  returns  the  number  of  irreducible  but not
+  primitive polynomials of degree [3Xm[103X over the finite field [3XK[103X.[133X
+  
+  [1X1.2-4 WeightMatrixBoth[101X
+  
+  [33X[1;0Y[29X[2XWeightMatrixBoth[102X( [3XM[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XWeightMatrixMaxRow[102X( [3XM[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XWeightMatrix[102X( [3XM[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XWeightMatrixBoth[110X  returns the Hamming Weights (HW) of matrix [3XM[103X over a finite
+  field.[133X
+  
+  [33X[0;0Y[10XWeightMatrixMaxRow[110X  retrns  the  Hamming  Weight  of  matrix [3XM[103X over a finite
+  field.[133X
+  
+  [33X[0;0Y[10XWeightMatrix[110X returns the Hamming Weight of matrix [3XM[103X over a finite field.[133X
+  
+  [33X[0;0YReturned  values  are  the  maximal  row  HW (naive estimate for the circuit
+  delay)  and  the HW of the the entire matrix (naive estimate for the circuit
+  area).  Estimates  are  naive  because they do not account for subexpression
+  eliminations.[133X
+  
+  [33X[0;0YMethods are using [2XWeightVecFFE[102X ([14XReference: WeightVecFFE[114X) [GAP22, (23.6-1)].[133X
+  
+  [1X1.2-5 WeightPolynomial[101X
+  
+  [33X[1;0Y[29X[2XWeightPolynomial[102X( [3Xf[103X ) [32X method[133X
+  
+  [33X[0;0Yreturns  the  Hamming  Weight  (HW)  of the coefficient vector of univariate
+  polynomial  [3Xf[103X.  For  polynomials  used as (N)LFSR feedbacks, the HW gives an
+  estimate of both circuit delay and area.[133X
+  
+  [33X[0;0YMethod is using [2XWeightVecFFE[102X ([14XReference: WeightVecFFE[114X) [GAP22, (23.6-1)].[133X
+  
+  
+  [1X1.3 [33X[0;0YMatrices for matrix-vector multipliers[133X[101X
+  
+  [33X[0;0YLet  [22XB_mathcalF/mathcalK}={ρ^(0),ρ^(1),dots,ρ^(m-1)}=  {ρ^(i)}_i=0^m-1[122X be an
+  arbitrary   basis  of  [22XmathcalF/mathcalK[122X,  where  [22Xm=[mathcalF:mathcalK][122X  and
+  [22Xρ∈mathcalF[122X.  Then for [22XA∈mathcalF[122X w.r.t.basis [22XB_mathcalF/mathcalK}[122X we use the
+  notation:[133X
+  
+  [30X    [33X[0;6Y[22XA =∑_i=0^m-1a_iρ^(i)[122X for the representation,[133X
+  
+  [30X    [33X[0;6Y[22X[A]_B_mathcalF/mathcalK}=[a_0, a_1, dots , a_m-1][122X for its vector form,[133X
+  
+  [30X    [33X[0;6Y[22X[A]_(i) = a_i[122X for the [22Xi[122X-th coordinate, where [22X0≤ i≤ m-1[122X.[133X
+  
+  [33X[0;0YWe  introduce  the  notion of [13Xdirection[113X for the basis, adopted from hardware
+  design.  For defining polynomial [3Xf[103X of degree [22Xm[122X, where [22Xf(ω)=0[122X, the polynomial
+  basis with direction[133X
+  
+  [30X    [33X[0;6Y[13Xto[113X: [22XPB_ to={1,ω,dots, ω^m-1}[122X (note on first notation: [22Xρ^(0)=1[122X)[133X
+  
+  [30X    [33X[0;6Y[13Xdownto:[113X  [22XPB_  downto={ω^m-1,  dots,  ω,1}[122X.  (note  on  first notation:
+        [22Xρ^(0)=ω^m-1[122X)[133X
+  
+  [33X[0;0YFor normal bases, we only consider the direction :[133X
+  
+  [30X    [33X[0;6Y[13Xto[113X:  [22XNB={β,  β^2,dots,β^2^m-1}}[122X  where [22Xβ[122X is a normal element. (note on
+        first notation: [22Xρ^(0)=β[122X)[133X
+  
+  [1X1.3-1 MatrixMultByConst[101X
+  
+  [33X[1;0Y[29X[2XMatrixMultByConst[102X( [3XB[103X, [3XC[103X ) [32X method[133X
+  
+  [33X[0;0Yreturns  [22Xm× m[122X matrix [3XM[103X for multiplication with constant [3Xffe[103X [3XC[103X. To be used as
+  a  matrix-vector multiplier [22XM⋅ [A]_B[122X for the product [22X[C⋅ A]_B[122X, where [3XA[103X is an
+  aribtrary [3Xffe[103X represented in basis [3XB[103X.[133X
+  
+  [1X1.3-2 TransitionMatrix[101X
+  
+  [33X[1;0Y[29X[2XTransitionMatrix[102X( [3XB1[103X, [3XB2[103X ) [32X method[133X
+  
+  [33X[0;0Yreturns  [22Xm× m[122X transition matrix [22XT[122X from basis [3XB1[103X to basis [3XB2[103X. To be used as a
+  matrix-vector  multiplier  for basis transiotion [22XT⋅ [A]_B1[122X to obtain [22X[A]_B2[122X,
+  where [3XA[103X is an aribtrary [3Xffe[103X.[133X
+  
+  [1X1.3-3 ReductionMatrix[101X
+  
+  [33X[1;0Y[29X[2XReductionMatrix[102X( [3Xf[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XReductionMatrixIR[102X( [3Xf[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XReductionMatrixDownto[102X( [3Xf[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XReductionMatrixRI[102X( [3Xf[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XReductionMatrix[110X  returns  [22Xm×  (m-1)[122X  reduction matrix [22XR[122X w.r.t. [13Xdirection to[113X.
+  Columns   of   [22XR[122X   are   the   elements   [22X[ω^m][122X,   [22X[ω^m+1][122X,  ...,  [22X[ω^2m-2][122X.
+  [10XReductionMatrixIR[110X  returns  the  [22Xm× (2m-1)[122X matrix [22X[I|R][122X: columns of identity
+  matrix [22XI[122X followed by the columns of [10XR=ReductionMatrix(f)[110X.[133X
+  
+  [33X[0;0Y[10XReductionMatrixDownto[110X  returns  [22Xm× (m-1)[122X reduction matrix [22XR[122X w.r.t. [13Xdirection
+  downto[113X.  Columns  of  [22XR[122X  are  the  elements  [22X[ω^2m-2][122X,  [22X[ω^m+1][122X, ..., [22X[ω^m][122X.
+  [10XReductionMatrixRI[110X   returns   the   [22Xm×   (2m-1)[122X  matrix  [22X[R|I][122X:  columns  of
+  [10XR=ReductionMatrixDownto(f)[110X followed by the columns of identity matrix [22XI[122X.[133X
+  
+  [1X1.3-4 MatrixU[101X
+  
+  [33X[1;0Y[29X[2XMatrixU[102X( [3XB[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XMatrixUi[102X( [3XB[103X, [3Xi[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XMatrixU[110X  returns  the  $m\times  m$  matrix  [22XU[122X with components [22Xu_i,j=[ρ^(j)⋅
+  A]_(i)[122X.  [10XMatrixUi[110X returns the [22Xi[122X-th component of matrix [22XU[122X. REF to Generalized
+  Algo section for details!!!![133X
+  
+  [1X1.3-5 MatrixM[101X
+  
+  [33X[1;0Y[29X[2XMatrixM[102X( [3XB[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XMatrixMi[102X( [3XB[103X, [3Xi[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XMatrixM[110X  returns  the [22Xm× m[122X matrix [22XM[122X with components [22Xm_j,k=[β^2^j+2^k][122X w.r.t.
+  the  normal  basis  [22XB={β,  β^2,dots,β^2^m-1}}[122X.  [10XMatrixMi[110X  returns  the  [22Xi[122X-th
+  component of matrix [22XM[122X. REF to Massey-Omura Algo section for details!!!![133X
+  

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (FFCSA) - Chapter 2: Constructions and representations</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap2"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap2_mj.html">[MathJax on]</a></p>
+<p><a id="X84DAAC2482BCA4F7" name="X84DAAC2482BCA4F7"></a></p>
+<div class="ChapSects"><a href="chap2.html#X84DAAC2482BCA4F7">2 <span class="Heading">Constructions and representations</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X869CFEEB854E04BB">2.1 <span class="Heading">Searching for polynomials and elements</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X786824597C2B2E6B">2.1-1 FindPrimitivePolyAll</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84E3FB997E326FB6">2.1-2 IsNormalFFE</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X819E05CC7E2A9BCC">2.1-3 FindNormalFFEs</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8140AE177EDDB0CE">2.2 <span class="Heading">Generating different bases</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E84A926875DA85D">2.2-1 GeneratePB</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B15C8BA831D2B35">2.2-2 IsDualBasisPair</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7DD91C117DBF6BA3">2.2-3 <span class="Heading">Finding a dual basis to normal basis</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84C7354E78D91C19">2.2-4 GenerateDBtoNB</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X78E2410178F6877A">2.2-5 <span class="Heading">Finding a dual basis to polynomial basis</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X798326B37C3706BF">2.2-6 GenerateDBtoPB</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8653C67182AC5F23">2.3 <span class="Heading">Tower field constructions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8705F08E81E53A1E">2.3-1 GenerateTFBfromEBlist</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81C1F4617AEDBFCD">2.3-2 FindEDPLAllfromEDL</a></span>
+</div></div>
+</div>
+
+<h3>2 <span class="Heading">Constructions and representations</span></h3>
+
+<p><a id="X869CFEEB854E04BB" name="X869CFEEB854E04BB"></a></p>
+
+<h4>2.1 <span class="Heading">Searching for polynomials and elements</span></h4>
+
+<p><a id="X786824597C2B2E6B" name="X786824597C2B2E6B"></a></p>
+
+<h5>2.1-1 FindPrimitivePolyAll</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindPrimitivePolyAll</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindIrreduciblePolyAll</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindPrimitivePolyAll2</code>( <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindIrreduciblePolyAll2</code>( <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindMonicIrreduciblePolyAll</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindMonicIrreducibleNotPrimitivePolyAll</code>( <var class="Arg">K</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>Exhanustive search methods for defining polynomials of degree <var class="Arg">m</var>, they only differ in search critera: primitive, irreducible, irreducible not primitive, monic irreducible, monic irreducible not primitive. <code class="func">IsPrimitivePolynomial</code> (<a href="../../../doc/ref/chap66.html#X834B54947FAADEA4"><span class="RefLink">Reference: IsPrimitivePolynomial</span></a>), <code class="func">IsIrreducibleRingElement</code> (<a href="../../../doc/ref/chap56.html#X7CD7C64A7D961A18"><span class="RefLink">Reference: IsIrreducibleRingElement</span></a>), and <code class="func">PolynomialRing</code> (<a href="../../../doc/ref/chap66.html#X7D2F16E480060330"><span class="RefLink">Reference: PolynomialRing</span></a>).</p>
+
+<p><code class="code">FindPrimitivePolyAll2</code> and <code class="code">FindIrreduciblePolyAll2</code> search over ground field <span class="SimpleMath">F_2</span>, and <code class="code">FindPrimitivePolyAll</code> and <code class="code">FindIrreduciblePolyAll</code> over arbitrary field <var class="Arg">K</var>.</p>
+
+<p><a id="X84E3FB997E326FB6" name="X84E3FB997E326FB6"></a></p>
+
+<h5>2.1-2 IsNormalFFE</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsNormalFFE</code>( <var class="Arg">K</var>, <var class="Arg">f</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsNormalFFE</code>( <var class="Arg">F</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsNormalFFE</code>( <var class="Arg">f</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsNormalFFEB</code>( <var class="Arg">K</var>, <var class="Arg">f</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsNormalFFEB</code>( <var class="Arg">F</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsNormalFFEB</code>( <var class="Arg">f</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns true or false. Field <var class="Arg">K</var>=<span class="SimpleMath">F_q</span> (if not explicitly given, then <var class="Arg">q=2</var> is used), <var class="Arg">f</var> is a defining polynomial of degree <var class="Arg">m</var>, and <var class="Arg">F</var>=<span class="SimpleMath">F_q^m</span>.</p>
+
+<p>Based on <a href="chapBib.html#biBmullen">[MP13, (5.2.11)]</a>: element <var class="Arg">ffe</var>=<span class="SimpleMath">α∈ F_q^m</span> define</p>
+
+<p class="pcenter">T_{\alpha}(x)=\sum_{i=0}^{m-1}\sigma^i(\alpha)x^i\;
+\in{\mathbb F}_{2^m}[x] </p>
+
+<p>Element <span class="SimpleMath">α∈ F_q^m</span> is normal over <span class="SimpleMath">F_q</span> if and only if <span class="SimpleMath">gcd(T_α(x), x^m-1)=1</span> in <span class="SimpleMath">F_q^m[x]</span>.</p>
+
+<p>The <code class="code">IsNormalFFEB</code> are the basis methods (suffix <code class="code">B</code>), they compute the set <var class="Arg">S</var> of conjugates of <var class="Arg">ffe</var> and tie it to the field as <code class="code">Basis(F,S)</code>; the latter is only succesful, if <var class="Arg">ffe</var> is indeed a normal element (for details see <code class="func">Basis</code> (<a href="../../../doc/ref/chap61.html#X837BE54C80DE368E"><span class="RefLink">Reference: Basis</span></a>)).</p>
+
+<p><a id="X819E05CC7E2A9BCC" name="X819E05CC7E2A9BCC"></a></p>
+
+<h5>2.1-3 FindNormalFFEs</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindNormalFFEs</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindNormalFFEsNC</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindNormalFFEsB</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindNormalFFEsBNC</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindNormalFFEsIgnoreConjugates</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindNormalFFEsBIgnoreConjugates</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindNormalFFEsBIgnoreConjugatesNC</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns <code class="code">pwrlist</code> with all exponents <span class="SimpleMath">e_i</span> such that <span class="SimpleMath">g^e_i</span> is a normal element in field <var class="Arg">F</var>, where <var class="Arg">g</var> is a generator of <var class="Arg">F</var>.</p>
+
+<p>The methods with suffix <code class="code">B</code> use the basis trick, all other methods use <code class="func">IsNormalFFE</code> (<a href="chap2.html#X84E3FB997E326FB6"><span class="RefLink">2.1-2</span></a>) to test candidates. The methods with suffix <code class="code">NC</code> (NoCheck) skip the check with <code class="func">NrNormalFFE</code> (<a href="chap1.html#X788C6C72864595F8"><span class="RefLink">1.2-2</span></a>) to determine all normal elements have been found. The reduced search space methods <code class="code">IgnoreConjugates</code> are using only coset leaders.</p>
+
+<p>Element <var class="Arg">g</var> is the root of the defining polynomial if primitive, otherwise <var class="Arg">g</var> is the first element such that <span class="SimpleMath">order(x)=Size(F)-1</span>. (obtained with <code class="func">GeneratorOfField</code> (<a href="/Users/obk1/Library/Preferences/GAP/pkg/fsr/doc/chap4.html#X8720E303858985A1"><span class="RefLink">FSR: GeneratorOfField</span></a>)).</p>
+
+<p><a id="X8140AE177EDDB0CE" name="X8140AE177EDDB0CE"></a></p>
+
+<h4>2.2 <span class="Heading">Generating different bases</span></h4>
+
+<p>As explained in Section <a href="chap1.html#X7C6473467EBB23F0"><span class="RefLink">1.3</span></a>, we adopt the notion of basis <em>direction</em> from the hardware perspective. Direction applies to polynomial bases and their dual bases. All methods that generate bases compute the set <var class="Arg">S</var> and tie it to the field as <code class="code">Basis(F,S)</code>. (<code class="func">Basis</code> (<a href="../../../doc/ref/chap61.html#X837BE54C80DE368E"><span class="RefLink">Reference: Basis</span></a>)).</p>
+
+<p><a id="X7E84A926875DA85D" name="X7E84A926875DA85D"></a></p>
+
+<h5>2.2-1 GeneratePB</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GeneratePB</code>( <var class="Arg">F</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GeneratePBdownto</code>( <var class="Arg">F</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateNB</code>( <var class="Arg">F</var>, <var class="Arg">ffe</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">GeneratePB</code> returns the polynomial basis of the field <var class="Arg">F</var> generated by the element <var class="Arg">ffe</var>=<span class="SimpleMath">α</span>: <span class="SimpleMath">PB_ to = {1,α, dots , α^m-1}</span>, where <span class="SimpleMath">m=[F:K]</span> is the dimension of <var class="Arg">F</var>.</p>
+
+<p><code class="code">GeneratePBdownto</code> returns the polynomial basis ofthe field <var class="Arg">F</var> generated by the element <var class="Arg">ffe</var>=<span class="SimpleMath">α</span>: <span class="SimpleMath">PB_ Downto = {α^m-1, dots ,α, 1 }</span>, where <span class="SimpleMath">m=[mathcalF:mathcalK]</span> is the dimension of <var class="Arg">F</var>.</p>
+
+<p><code class="code">GenerateNB</code> returns the normal basis of the field <var class="Arg">F</var> generated by the normal element <var class="Arg">ffe</var>=<span class="SimpleMath">α</span>: <span class="SimpleMath">NB = {α^q^i-1}}_i=0^m-1</span>, where <span class="SimpleMath">m=[mathcalF:mathcalK]</span> is the dimension of <var class="Arg">F</var> and <span class="SimpleMath">q=|K|</span> is the order of the subfield <var class="Arg">K</var>. Normal bases are always considered to be direction <em>to</em>.</p>
+
+<p><a id="X7B15C8BA831D2B35" name="X7B15C8BA831D2B35"></a></p>
+
+<h5>2.2-2 IsDualBasisPair</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsDualBasisPair</code>( <var class="Arg">B1</var>, <var class="Arg">B2</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns true or false. By <a href="chapBib.html#biBmullen">[MP13, (5.1.1)]</a> two ordered bases of <span class="SimpleMath">F_q^m</span> over <span class="SimpleMath">F_q</span> <span class="SimpleMath">B_1={α_i}_0^m-1</span> and <span class="SimpleMath">B_2={β_i}_0^m-1</span> are <em>dual</em> if for <span class="SimpleMath">i,j= 0,dots,m-1</span>: <span class="SimpleMath">Tr^{ F_q^m}_{ F_q(α_iβ_j) =δ_ij</span> An ordered basis is <em>self-dual</em> if it is dual with itself.</p>
+
+<p><a id="X7DD91C117DBF6BA3" name="X7DD91C117DBF6BA3"></a></p>
+
+<h5>2.2-3 <span class="Heading">Finding a dual basis to normal basis</span></h5>
+
+<p><a href="chapBib.html#biBmenezesFF">[MBG+92, (4.7)]</a> Let <span class="SimpleMath">NB={α,α^q,α^q^2,dots, α^q^m-1}}</span> be a normal basis of <span class="SimpleMath">F_q^m/ F_q</span>. Let</p>
+
+<p class="pcenter"> t_i ={\rm Tr}^{{\mathbb F}_{q^m}}_{{\mathbb F}_q}(\alpha\alpha^{q^i})
+   \qquad  {\rm and}\qquad N(x)=\sum_{i=0}^{m-1}t_ix^i. </p>
+
+<p>Furthermore, let</p>
+
+<p class="pcenter">  D(x)= \sum_{i=0}^{m-1}d_ix^i, \quad d_i\in {\mathbb F}_q,</p>
+
+<p>be the unique polynomial such that <span class="SimpleMath">N(x)D(x)≡ 1 mod (x^m+1)</span>. Then, the dual basis is generated by <span class="SimpleMath">β=∑_i=0^m-1d_iα^q^i</span>, obtained from coefficients of <span class="SimpleMath">D(x)</span>. Conjugates of element <span class="SimpleMath">β</span> generate a basis <span class="SimpleMath">DB</span>, which is dual w.r.t. <span class="SimpleMath">NB</span> and is itself a normal basis: <span class="SimpleMath">DB = {β,β^q,β^q^2,dots, β^q^m-1}}</span>.</p>
+
+<p><a id="X84C7354E78D91C19" name="X84C7354E78D91C19"></a></p>
+
+<h5>2.2-4 GenerateDBtoNB</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateDBtoNB</code>( <var class="Arg">F</var>, <var class="Arg">a</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindInvCyc</code>( <var class="Arg">F</var>, <var class="Arg">N</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GeneratorOfDBtoNB</code>( <var class="Arg">F</var>, <var class="Arg">a</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">FindInvCyc</code> returns polynomial <span class="SimpleMath">D(x)</span> such that <span class="SimpleMath">N(x)D(x)≡ 1 mod (x^m+1)</span> by <a href="chap2.html#X7DD91C117DBF6BA3"><span class="RefLink">2.2-3</span></a>.</p>
+
+<p><code class="code">GeneratorOfDBtoNB</code> returns the generator <var class="Arg">b</var> of the dual basis: it forms polynomial <code class="code">N</code>=<span class="SimpleMath">N(x)</span> from elements of <code class="code">NB=GenerateNB(F,a)</code>, then calls <code class="code">FindInvCyc</code>, and generates the element <var class="Arg">b</var>=<span class="SimpleMath">β</span> by <a href="chap2.html#X7DD91C117DBF6BA3"><span class="RefLink">2.2-3</span></a>.</p>
+
+<p><code class="code">GenerateDBtoNB</code> returns the dual normal basis <var class="Arg">DB</var> as <var class="Arg">GenerateNB(F, b)</var>, where <code class="code">b=GeneratorOfDBtoNB(F,a))</code>.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := GF(2);; F := GF(2^4);; x:= X(K, "x");; f:= x^4 + x + 1;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := GeneratorOfField(F); e := FindNormalFFEs(F)[1]; a := g^e;</span>
+Z(2^4)
+3
+Z(2^4)^3
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NB := GenerateNB(F, a);</span>
+Basis( GF(2^4), [ Z(2^4)^3, Z(2^4)^6, Z(2^4)^12, Z(2^4)^9 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DB := GenerateDBtoNB(F, a);</span>
+Basis( GF(2^4), [ Z(2^4)^11, Z(2^4)^7, Z(2^4)^14, Z(2^4)^13 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsDualBasisPair(NB, DB);</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">b := GeneratorOfDBtoNB(F, a); DB = GenerateNB(F, b);</span>
+Z(2^4)^11
+true
+
+</pre></div>
+
+<p><a id="X78E2410178F6877A" name="X78E2410178F6877A"></a></p>
+
+<h5>2.2-5 <span class="Heading">Finding a dual basis to polynomial basis</span></h5>
+
+<p><a href="chapBib.html#biBAHnotes">[Has17, (12)]</a> and <a href="chapBib.html#biBmullen">[MP13, (5.1.12)]</a> Let <span class="SimpleMath">α</span> be a root of a monic irreducible polynomial <span class="SimpleMath">f</span> of degree <span class="SimpleMath">m</span> over <span class="SimpleMath">F_q</span>, and let <span class="SimpleMath">PB = {1,α,α^2,dotsα^m-1}</span> be the corresponding polynomial basis of <span class="SimpleMath">F_q^m/ F_q</span>. The polynomial <span class="SimpleMath">f</span> can be rewritten as:</p>
+
+<p class="pcenter">
+f(x)= (x-\alpha)(\sum_{i=0}^{m-1}g_ix^i) \quad
+{\rm where} \quad g_i\in{\mathbb F}_{q^m} \quad {\rm for} \quad i=0,\dots,m-1.
+</p>
+
+<p>The dual basis of <span class="SimpleMath">PB</span> is obtained from coefficients <span class="SimpleMath">g_i</span> and the derivative of <span class="SimpleMath">f(x)</span> evaluated for <span class="SimpleMath">α</span>, that is <span class="SimpleMath">f'(α)</span>:</p>
+
+<p class="pcenter">
+DB = \{ \frac{g_0}{f'(\alpha)}, \dots, \frac{g_{m-1}}{f'(\alpha)}\}
+</p>
+
+<p><a id="X798326B37C3706BF" name="X798326B37C3706BF"></a></p>
+
+<h5>2.2-6 GenerateDBtoPB</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateDBtoPB</code>( <var class="Arg">F</var>, <var class="Arg">a</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateDBtoPBdownto</code>( <var class="Arg">F</var>, <var class="Arg">a</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>returns the dual basis to the basis generated by <var class="Arg">a</var> following <a href="chap2.html#X78E2410178F6877A"><span class="RefLink">2.2-5</span></a>. The downto version has reversed order of basis elements.</p>
+
+<p><a id="X8653C67182AC5F23" name="X8653C67182AC5F23"></a></p>
+
+<h4>2.3 <span class="Heading">Tower field constructions</span></h4>
+
+<p>For a composite integer <span class="SimpleMath">m=n_1⋯ n_k</span>, where <span class="SimpleMath">n_i, i=1,dots, k</span> are positive integers (not necessarily primes), it is possible to build <span class="SimpleMath">F_p^m</span> as a tower of extensions <span class="SimpleMath">F_(dots ((p^{n_1})^n_2)dots)^n_k}</span> over its prime subfield <span class="SimpleMath">F_p</span>. Instead of constructing <span class="SimpleMath">F_p^m</span> as a single extension of degree <span class="SimpleMath">[ F_p^m: F_p]=m</span> over the prime field, the field is constructed in <span class="SimpleMath">k</span> steps, building an extension <span class="SimpleMath">mathcalK_i/mathcalK_i-1</span> of degree <span class="SimpleMath">[mathcalK_i:mathcalK_i-1]=n_i</span> at step <span class="SimpleMath">i</span>, where <span class="SimpleMath">n_i</span> is a factor in decomposition of <span class="SimpleMath">m</span>, starting with <span class="SimpleMath">mathcalK_0= F_p</span>:</p>
+
+<p class="pcenter">
+{\mathbb F}_p=\mathcal{K}_0\subset \mathcal{K}_1\subset \dots\subset \mathcal{K}_{k-1}
+\subset \mathcal{K}_k={\mathbb F}_{\left(\dots ((p^{{n_1}})^{n_2})\dots\right)^{n_k}}
+\cong {\mathbb F}_{p^m}
+</p>
+
+<p>with their corresponding orders</p>
+
+<p class="pcenter">
+p\leq p^{n_1}\leq p^{n_1\cdot n_2}\leq \dots \leq p^{n_1\cdots
+ n_k} = p^m , {\rm where\; } m=n_1\cdots n_k
+</p>
+
+<p>Note that the field obtained with each extension is isomorphic to a field whose order is <span class="SimpleMath">p</span> to the power of partial product of extension degrees up to the current extension, for example <span class="SimpleMath">F_(p^n_1)^n_2}≅ F_p^n_1⋅ n_2}</span>. For the generalized methods for generating tower field bases to arbitrary degree of extension and different bases, e.g., a mix of polynomial and normal bases, a distinction is made between <em>reference field</em> defining polynomials (RDP) and <em>extension field</em> defining polynomial (EDP). This distinction is explained with the example <span class="SimpleMath">F_2 ⊂ F_2^2⊂ F_(2^2)^2 ⊂ F_((2^2)^2)^2 ≅ F_2^8</span>, shown in figure: <img src="fsr.jpg" align="center" /></p>
+
+
+<ul>
+<li><p><em>The reference field</em> defining polynomials are labelled <span class="SimpleMath">p_1, p_2, p_3</span>. They are the defining polynomials of the isomorphic reference finite fields. For example, <span class="SimpleMath">p_3</span> is a degree 8 defining polynomial of the finite field <span class="SimpleMath">F_2^8</span>, which is isomorphic to <span class="SimpleMath">F_((2^2)^2)^2</span>.</p>
+
+</li>
+<li><p><em>The extension field</em> defining polynomials are labelled <span class="SimpleMath">f_1, f_2, f_3</span>, and can be seen on the outer left side of the diagram. For example, the degree 2 polynomial <span class="SimpleMath">f_3</span> is irreducible over <span class="SimpleMath">F_(2^2)^2</span> and used to construct <span class="SimpleMath">F_((2^2)^2)^2/ F_(2^2)^2</span> as <span class="SimpleMath">F_(2^2)^2[x]/(f_3)</span>.</p>
+
+</li>
+</ul>
+<p>With each new extension <span class="SimpleMath">F_q^2/ F_q</span>, a <em>per-level</em> basis (PLB) can be found (or <em>extension basis</em> (EB) for easier reference to EDP). For this example, a polynomial basis with the root of the EDP <span class="SimpleMath">f_i</span> is used for each level:</p>
+
+
+<ul>
+<li><p><span class="SimpleMath">B_{ F_((2^2)^2)^2/ F_(2^2)^2}={1,ν}</span>, where <span class="SimpleMath">f_3(ν)=0</span></p>
+
+</li>
+<li><p><span class="SimpleMath">B_{ F_(2^2)^2/ F_2^2}={1,μ}</span>, where <span class="SimpleMath">f_2(μ)=0</span></p>
+
+</li>
+<li><p><span class="SimpleMath">B_{ F_2^2/ F_2={1,λ}</span>, where <span class="SimpleMath">f_1(λ)=0</span></p>
+
+</li>
+</ul>
+<p>An element <span class="SimpleMath">F_((2^2)^2)^2</span> is represented w.r.t. the per-level basis <span class="SimpleMath">B_{ F_((2^2)^2)^2/ F_(2^2)^2}</span> as <span class="SimpleMath">A=a_0 +a_1ν</span>, where <span class="SimpleMath">a_0,a_1∈ F_(2^2)^2</span>. Both coordinates <span class="SimpleMath">a_0,a_1</span> are then represented w.r.t. the per-level basis <span class="SimpleMath">B_{ F_(2^2)^2/ F_2^2}</span> as <span class="SimpleMath">a_i=a_i0 +a_i1μ</span>, where <span class="SimpleMath">a_i0,a_i1∈ F_2^2</span>, and so on. The PLBs lead to the construction of a tower field basis (TFB) of the isomorphic field <span class="SimpleMath">{ F_2^8/ F_2</span> obtained as products of PLB elements:</p>
+
+<p class="pcenter">
+TFB_{{\mathbb F}_{2^8}/{\mathbb F}_2}=\{t_0, t_1, \dots , t_7\}
+=\{1, \lambda, \mu, \mu\lambda,\nu, \nu\lambda, \nu\mu, \nu\mu\lambda\}
+</p>
+
+<p>The per-level bases are used for submodule extraction and generation. When needed, the TFB is used for transition matrices between the tower field construction and the isomorphic field, construced with a single extension, e.g., between <span class="SimpleMath">F_((2^2)^2)^2</span> and <span class="SimpleMath">F_2^8</span>. TFB is also used to generate the testvectors for the top-level hardware modules.</p>
+
+<p><a id="X8705F08E81E53A1E" name="X8705F08E81E53A1E"></a></p>
+
+<h5>2.3-1 GenerateTFBfromEBlist</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateTFBfromEBlist</code>( <var class="Arg">EBlist</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateTFBfromEDPLwithMB</code>( <var class="Arg">EDPlist</var>, <var class="Arg">Mlist</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateTFBfromEDPLwithPB</code>( <var class="Arg">EDPlist</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateTFBfromEDPLwithPBdownto</code>( <var class="Arg">EDPlist</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GenerateTFBfromEDPLwithNB</code>( <var class="Arg">EDPlist</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p><code class="code">GenerateTFBfromEBlist</code> takes an ordered list of bases <var class="Arg">EBlist</var>, corresponding to <span class="SimpleMath">F_(dots ((p^{n_1})^n_2)dots)^n_k}</span>, and returns <span class="SimpleMath">TFB_{ F_p^m/ F_p</span>.</p>
+
+<p><code class="code">GenerateTFBfromEDPLwithMB</code> takes an ordered list of extension field defining polynomials <var class="Arg">EDPlist</var>, and list of extension instructions <code class="code">Mlist</code> containing tuples <code class="code">[BasisType, BasisDirection]</code>, with currently supported values <code class="code">BasisType</code><span class="SimpleMath">∈</span><code class="code">["PB", "NB"]</code> and <code class="code">BasisDirection</code><span class="SimpleMath">∈</span><code class="code">["to", "downto"]</code>. The instruction list allows for mixed bases, i.e., a different type of basis on each level, as shown in example below.</p>
+
+<p>Internally, we use GAP <code class="code">Dictionary</code> (Chapter 28 in the GAP reference manual <a href="chapBib.html#biBgapX">[GAP22]</a>), and the <code class="code">Mlist</code> instructions to retrieve the strings <code class="code">``GeneratePB''</code>, <code class="code">``GeneratePBdownto''</code>, <code class="code">``GenerateNB''</code>, and concatenate them with brackets and the appropriate strings for field <code class="code">F</code> and <code class="code">ffe</code>. For example, the resulting string <code class="code">``GenerateNB(F, ffe)''</code> and corresponds exactly to the format of the <code class="func">GenerateNB</code> (<a href="chap2.html#X7E84A926875DA85D"><span class="RefLink">2.2-1</span></a>) method. Then, using the existing <code class="func">EvalString</code> (<a href="../../../doc/ref/chap27.html#X7DE4CCD285440659"><span class="RefLink">Reference: EvalString</span></a>) (Section 27.9-5 in the GAP reference manual <a href="chapBib.html#biBgapX">[GAP22]</a>), <strong class="pkg">GAP</strong> executes the <code class="code">GenerateNB</code> method with the given arguments. Such approach was used in several parts of the automation framework, beyond the <strong class="pkg">FFCSA</strong> package.</p>
+
+<p><code class="code">GenerateTFBfromEDPLwithPB</code>, <code class="code">GenerateTFBfromEDPLwithPBdownto</code>, and <code class="code">GenerateTFBfromEDPLwithNB</code> are wrappers for <code class="code">GenerateTFBfromEDPLwithMB</code> with <var class="Arg">Mlist</var> composed only of <code class="code">["PB","to"]</code>, <code class="code">["PB","downto"]</code> or <code class="code">["NB","to"]</code>, respectively. returns the tower field basis of the finite field obtained as a tower of extensions with extension defining polynomials provided as a list of polynomials <span class="SimpleMath">edpl = [f_1, f_2, dots, ,f_n]</span>.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := GF(2);; x:= X(K, "x");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EDPlist := [ x^2+x+Z(2)^0, x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^4) ];</span>
+[ x^2+x+Z(2)^0, x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^4) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Mlist := [["PB", "to"], ["NB", "to"], ["PB", "downto"]];</span>
+[ [ "PB", "to" ], [ "NB", "to" ], [ "PB", "downto" ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TFB1 := GenerateTFBfromEDPLwithMB(EDPlist, Mlist);</span>
+Basis( GF(2^8), [ Z(2^8)^178, Z(2^8)^8, Z(2^8)^229, Z(2^8)^59, Z(2^4)^6,
+Z(2^4)^11, Z(2^4)^9, Z(2^4)^14 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f1 := EDPlist[1];; f2 := EDPlist[2];; f3 := EDPlist[3];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F1 := FieldExtension(K,  f1);;  lambda := RootOfDefiningPolynomial(F1);</span>
+Z(2^2)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F2 := FieldExtension(F1, f2);;  mu := RootOfDefiningPolynomial(F2);</span>
+Z(2^4)^6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F3 := FieldExtension(F2, f3);;  nu := RootOfDefiningPolynomial(F3);</span>
+Z(2^8)^76
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">B1 := GeneratePB(F1, lambda);</span>
+Basis( GF(2^2), [ Z(2)^0, Z(2^2) ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">B2 := GenerateNB(F2, mu);</span>
+Basis( AsField( GF(2^2), GF(2^4) ), [ Z(2^4)^6, Z(2^4)^9 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">B3 := GeneratePBdownto(F3, nu);</span>
+Basis( AsField( AsField( GF(2^2), GF(2^4) ), GF(2^8) ), [ Z(2^8)^76, Z(2)^0 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for i in [1..2] do for j in [1..2] do for k in [1..2] do</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       Print(TFB1[4*(i-1)+2*(j-1)+ k], "=" ,  B3[i],"*",B2[j],"*",B1[k],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       " is ", TFB1[4*(i-1)+2*(j-1)+ k] = B3[i]*B2[j]*B1[k], "\n");</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">od; od; od;</span>
+Z(2^8)^178=Z(2^8)^76*Z(2^4)^6*Z(2)^0 is true
+Z(2^8)^8=Z(2^8)^76*Z(2^4)^6*Z(2^2) is true
+Z(2^8)^229=Z(2^8)^76*Z(2^4)^9*Z(2)^0 is true
+Z(2^8)^59=Z(2^8)^76*Z(2^4)^9*Z(2^2) is true
+Z(2^4)^6=Z(2)^0*Z(2^4)^6*Z(2)^0 is true
+Z(2^4)^11=Z(2)^0*Z(2^4)^6*Z(2^2) is true
+Z(2^4)^9=Z(2)^0*Z(2^4)^9*Z(2)^0 is true
+Z(2^4)^14=Z(2)^0*Z(2^4)^9*Z(2^2) is true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lambda*mu*nu=TFB1[2];</span>
+true
+
+</pre></div>
+
+<p><a id="X81C1F4617AEDBFCD" name="X81C1F4617AEDBFCD"></a></p>
+
+<h5>2.3-2 FindEDPLAllfromEDL</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FindEDPLAllfromEDL</code>( [<var class="Arg">e1</var>, <var class="Arg">e2</var>, <var class="Arg">...</var>, <var class="Arg">ek</var>] )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>for extension degree list (EDL) <var class="Arg">[e1, e2, ..., ek]</var>, method <code class="code">FindEDPLAllfromEDL</code> returns <code class="code">k</code> lists of monic polynomials of degree <var class="Arg">ei</var>, <code class="code">i=1,...,k</code>, irreducible over the subfield. It is using the method <code class="func">FindMonicIrreduciblePolyAll</code> (<a href="chap2.html#X786824597C2B2E6B"><span class="RefLink">2.1-1</span></a>).</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := GF(2);; listall := FindEDPLAllfromEDL([2,2,2]);</span>
+[ [ x^2+x+Z(2)^0 ], [ x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^2), x^2+x+Z(2^2), x^2
++x+Z(2^2)^2, x^2+Z(2^2)^2*x+Z(2)^0, x^2+Z(2^2)^2*x+Z(2^2)^2 ], [ x^2+
+Z(2^4)^3*x+Z(2)^0, x^2+Z(2^4)^3*x+Z(2^2), x^2+Z(2^4)^3*x+Z(2^4)^2,
+   ... OMITTED FOR BREVITY ....
+x^2+x+Z(2^4)^14, x^2+Z(2^2)*x+Z(2^4), x^2+Z(2^2)*x+Z(2^4)^2,
+   ... OMITTED FOR BREVITY ....
+x^2+Z(2^4)^13*x+Z(2^4)^14 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EDPlist := [ listall[1][1], listall[2][1], listall[3][25] ];</span>
+[ x^2+x+Z(2)^0, x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^4) ]
+
+</pre></div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

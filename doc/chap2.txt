@@ -1,0 +1,375 @@
+  
+  [1X2 [33X[0;0YConstructions and representations[133X[101X
+  
+  
+  [1X2.1 [33X[0;0YSearching for polynomials and elements[133X[101X
+  
+  [1X2.1-1 FindPrimitivePolyAll[101X
+  
+  [33X[1;0Y[29X[2XFindPrimitivePolyAll[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindIrreduciblePolyAll[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindPrimitivePolyAll2[102X( [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindIrreduciblePolyAll2[102X( [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindMonicIrreduciblePolyAll[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindMonicIrreducibleNotPrimitivePolyAll[102X( [3XK[103X, [3Xm[103X ) [32X method[133X
+  
+  [33X[0;0YExhanustive  search  methods for defining polynomials of degree [3Xm[103X, they only
+  differ in search critera: primitive, irreducible, irreducible not primitive,
+  monic  irreducible,  monic  irreducible not primitive. [2XIsPrimitivePolynomial[102X
+  ([14XReference:   IsPrimitivePolynomial[114X),  [2XIsIrreducibleRingElement[102X  ([14XReference:
+  IsIrreducibleRingElement[114X), and [2XPolynomialRing[102X ([14XReference: PolynomialRing[114X).[133X
+  
+  [33X[0;0Y[10XFindPrimitivePolyAll2[110X  and  [10XFindIrreduciblePolyAll2[110X search over ground field
+  [22XF_2[122X,  and  [10XFindPrimitivePolyAll[110X  and  [10XFindIrreduciblePolyAll[110X  over arbitrary
+  field [3XK[103X.[133X
+  
+  [1X2.1-2 IsNormalFFE[101X
+  
+  [33X[1;0Y[29X[2XIsNormalFFE[102X( [3XK[103X, [3Xf[103X, [3Xffe[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XIsNormalFFE[102X( [3XF[103X, [3Xffe[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XIsNormalFFE[102X( [3Xf[103X, [3Xffe[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XIsNormalFFEB[102X( [3XK[103X, [3Xf[103X, [3Xffe[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XIsNormalFFEB[102X( [3XF[103X, [3Xffe[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XIsNormalFFEB[102X( [3Xf[103X, [3Xffe[103X ) [32X method[133X
+  
+  [33X[0;0Yreturns  true  or  false.  Field [3XK[103X=[22XF_q[122X (if not explicitly given, then [3Xq=2[103X is
+  used), [3Xf[103X is a defining polynomial of degree [3Xm[103X, and [3XF[103X=[22XF_q^m[122X.[133X
+  
+  [33X[0;0YBased on [MP13, (5.2.11)]: element [3Xffe[103X=[22Xα∈ F_q^m[122X define[133X
+  
+  
+  [24X[33X[0;6YT_{\alpha}(x)=\sum_{i=0}^{m-1}\sigma^i(\alpha)x^i\; \in{\mathbb F}_{2^m}[x][133X
+  
+  [124X
+  
+  [33X[0;0YElement  [22Xα∈  F_q^m[122X is normal over [22XF_q[122X if and only if [22Xgcd(T_α(x), x^m-1)=1[122X in
+  [22XF_q^m[x][122X.[133X
+  
+  [33X[0;0YThe [10XIsNormalFFEB[110X are the basis methods (suffix [10XB[110X), they compute the set [3XS[103X of
+  conjugates  of [3Xffe[103X and tie it to the field as [10XBasis(F,S)[110X; the latter is only
+  succesful,  if  [3Xffe[103X  is  indeed  a  normal  element  (for  details see [2XBasis[102X
+  ([14XReference: Basis[114X)).[133X
+  
+  [1X2.1-3 FindNormalFFEs[101X
+  
+  [33X[1;0Y[29X[2XFindNormalFFEs[102X( [3XF[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindNormalFFEsNC[102X( [3XF[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindNormalFFEsB[102X( [3XF[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindNormalFFEsBNC[102X( [3XF[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindNormalFFEsIgnoreConjugates[102X( [3XF[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindNormalFFEsBIgnoreConjugates[102X( [3XF[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindNormalFFEsBIgnoreConjugatesNC[102X( [3XF[103X ) [32X method[133X
+  
+  [33X[0;0Yreturns  [10Xpwrlist[110X  with all exponents [22Xe_i[122X such that [22Xg^e_i[122X is a normal element
+  in field [3XF[103X, where [3Xg[103X is a generator of [3XF[103X.[133X
+  
+  [33X[0;0YThe  methods  with  suffix  [10XB[110X  use  the  basis  trick, all other methods use
+  [2XIsNormalFFE[102X ([14X2.1-2[114X) to test candidates. The methods with suffix [10XNC[110X (NoCheck)
+  skip  the  check  with  [2XNrNormalFFE[102X ([14X1.2-2[114X) to determine all normal elements
+  have been found. The reduced search space methods [10XIgnoreConjugates[110X are using
+  only coset leaders.[133X
+  
+  [33X[0;0YElement  [3Xg[103X  is the root of the defining polynomial if primitive, otherwise [3Xg[103X
+  is   the   first   element  such  that  [22Xorder(x)=Size(F)-1[122X.  (obtained  with
+  [2XGeneratorOfField[102X ([14XFSR: GeneratorOfField[114X)).[133X
+  
+  
+  [1X2.2 [33X[0;0YGenerating different bases[133X[101X
+  
+  [33X[0;0YAs explained in Section [14X1.3[114X, we adopt the notion of basis [13Xdirection[113X from the
+  hardware  perspective.  Direction applies to polynomial bases and their dual
+  bases.  All  methods that generate bases compute the set [3XS[103X and tie it to the
+  field as [10XBasis(F,S)[110X. ([2XBasis[102X ([14XReference: Basis[114X)).[133X
+  
+  [1X2.2-1 GeneratePB[101X
+  
+  [33X[1;0Y[29X[2XGeneratePB[102X( [3XF[103X, [3Xffe[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGeneratePBdownto[102X( [3XF[103X, [3Xffe[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGenerateNB[102X( [3XF[103X, [3Xffe[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XGeneratePB[110X  returns  the  polynomial  basis  of the field [3XF[103X generated by the
+  element  [3Xffe[103X=[22Xα[122X: [22XPB_ to = {1,α, dots , α^m-1}[122X, where [22Xm=[F:K][122X is the dimension
+  of [3XF[103X.[133X
+  
+  [33X[0;0Y[10XGeneratePBdownto[110X returns the polynomial basis ofthe field [3XF[103X generated by the
+  element    [3Xffe[103X=[22Xα[122X:   [22XPB_   Downto   =   {α^m-1,   dots   ,α,   1   }[122X,   where
+  [22Xm=[mathcalF:mathcalK][122X is the dimension of [3XF[103X.[133X
+  
+  [33X[0;0Y[10XGenerateNB[110X  returns  the normal basis of the field [3XF[103X generated by the normal
+  element  [3Xffe[103X=[22Xα[122X:  [22XNB = {α^q^i-1}}_i=0^m-1[122X, where [22Xm=[mathcalF:mathcalK][122X is the
+  dimension  of  [3XF[103X  and [22Xq=|K|[122X is the order of the subfield [3XK[103X. Normal bases are
+  always considered to be direction [13Xto[113X.[133X
+  
+  [1X2.2-2 IsDualBasisPair[101X
+  
+  [33X[1;0Y[29X[2XIsDualBasisPair[102X( [3XB1[103X, [3XB2[103X ) [32X method[133X
+  
+  [33X[0;0Yreturns  true  or  false. By [MP13, (5.1.1)] two ordered bases of [22XF_q^m[122X over
+  [22XF_q[122X  [22XB_1={α_i}_0^m-1[122X  and  [22XB_2={β_i}_0^m-1[122X  are [13Xdual[113X if for [22Xi,j= 0,dots,m-1[122X:
+  [22XTr^{  F_q^m}_{ F_q(α_iβ_j) =δ_ij[122X An ordered basis is [13Xself-dual[113X if it is dual
+  with itself.[133X
+  
+  
+  [1X2.2-3 [33X[0;0YFinding a dual basis to normal basis[133X[101X
+  
+  [33X[0;0Y[MBG+92,  (4.7)]  Let  [22XNB={α,α^q,α^q^2,dots,  α^q^m-1}}[122X be a normal basis of
+  [22XF_q^m/ F_q[122X. Let[133X
+  
+  
+  [24X[33X[0;6Yt_i ={\rm Tr}^{{\mathbb F}_{q^m}}_{{\mathbb F}_q}(\alpha\alpha^{q^i}) \qquad
+  {\rm and}\qquad N(x)=\sum_{i=0}^{m-1}t_ix^i.[133X
+  
+  [124X
+  
+  [33X[0;0YFurthermore, let[133X
+  
+  
+  [24X[33X[0;6YD(x)= \sum_{i=0}^{m-1}d_ix^i, \quad d_i\in {\mathbb F}_q,[133X
+  
+  [124X
+  
+  [33X[0;0Ybe  the  unique polynomial such that [22XN(x)D(x)≡ 1 mod (x^m+1)[122X. Then, the dual
+  basis  is  generated  by  [22Xβ=∑_i=0^m-1d_iα^q^i[122X, obtained from coefficients of
+  [22XD(x)[122X.  Conjugates  of element [22Xβ[122X generate a basis [22XDB[122X, which is dual w.r.t. [22XNB[122X
+  and is itself a normal basis: [22XDB = {β,β^q,β^q^2,dots, β^q^m-1}}[122X.[133X
+  
+  [1X2.2-4 GenerateDBtoNB[101X
+  
+  [33X[1;0Y[29X[2XGenerateDBtoNB[102X( [3XF[103X, [3Xa[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XFindInvCyc[102X( [3XF[103X, [3XN[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGeneratorOfDBtoNB[102X( [3XF[103X, [3Xa[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XFindInvCyc[110X  returns  polynomial  [22XD(x)[122X  such  that [22XN(x)D(x)≡ 1 mod (x^m+1)[122X by
+  [14X2.2-3[114X.[133X
+  
+  [33X[0;0Y[10XGeneratorOfDBtoNB[110X  returns  the  generator  [3Xb[103X  of  the  dual basis: it forms
+  polynomial   [10XN[110X=[22XN(x)[122X   from   elements   of  [10XNB=GenerateNB(F,a)[110X,  then  calls
+  [10XFindInvCyc[110X, and generates the element [3Xb[103X=[22Xβ[122X by [14X2.2-3[114X.[133X
+  
+  [33X[0;0Y[10XGenerateDBtoNB[110X  returns  the dual normal basis [3XDB[103X as [3XGenerateNB(F, b)[103X, where
+  [10Xb=GeneratorOfDBtoNB(F,a))[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XK := GF(2);; F := GF(2^4);; x:= X(K, "x");; f:= x^4 + x + 1;;[127X[104X
+    [4X[25Xgap>[125X [27Xg := GeneratorOfField(F); e := FindNormalFFEs(F)[1]; a := g^e;[127X[104X
+    [4X[28XZ(2^4)[128X[104X
+    [4X[28X3[128X[104X
+    [4X[28XZ(2^4)^3[128X[104X
+    [4X[25Xgap>[125X [27XNB := GenerateNB(F, a);[127X[104X
+    [4X[28XBasis( GF(2^4), [ Z(2^4)^3, Z(2^4)^6, Z(2^4)^12, Z(2^4)^9 ] )[128X[104X
+    [4X[25Xgap>[125X [27XDB := GenerateDBtoNB(F, a);[127X[104X
+    [4X[28XBasis( GF(2^4), [ Z(2^4)^11, Z(2^4)^7, Z(2^4)^14, Z(2^4)^13 ] )[128X[104X
+    [4X[25Xgap>[125X [27XIsDualBasisPair(NB, DB);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27Xb := GeneratorOfDBtoNB(F, a); DB = GenerateNB(F, b);[127X[104X
+    [4X[28XZ(2^4)^11[128X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.2-5 [33X[0;0YFinding a dual basis to polynomial basis[133X[101X
+  
+  [33X[0;0Y[Has17,  (12)]  and  [MP13, (5.1.12)] Let [22Xα[122X be a root of a monic irreducible
+  polynomial  [22Xf[122X  of degree [22Xm[122X over [22XF_q[122X, and let [22XPB = {1,α,α^2,dotsα^m-1}[122X be the
+  corresponding  polynomial  basis  of  [22XF_q^m/  F_q[122X.  The  polynomial [22Xf[122X can be
+  rewritten as:[133X
+  
+  
+  [24X[33X[0;6Yf(x)=    (x-\alpha)(\sum_{i=0}^{m-1}g_ix^i)    \quad   {\rm   where}   \quad
+  g_i\in{\mathbb F}_{q^m} \quad {\rm for} \quad i=0,\dots,m-1.[133X
+  
+  [124X
+  
+  [33X[0;0YThe dual basis of [22XPB[122X is obtained from coefficients [22Xg_i[122X and the derivative of
+  [22Xf(x)[122X evaluated for [22Xα[122X, that is [22Xf'(α)[122X:[133X
+  
+  
+  [24X[33X[0;6YDB = \{ \frac{g_0}{f'(\alpha)}, \dots, \frac{g_{m-1}}{f'(\alpha)}\}[133X
+  
+  [124X
+  
+  [1X2.2-6 GenerateDBtoPB[101X
+  
+  [33X[1;0Y[29X[2XGenerateDBtoPB[102X( [3XF[103X, [3Xa[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGenerateDBtoPBdownto[102X( [3XF[103X, [3Xa[103X ) [32X method[133X
+  
+  [33X[0;0Yreturns  the  dual  basis  to  the basis generated by [3Xa[103X following [14X2.2-5[114X. The
+  downto version has reversed order of basis elements.[133X
+  
+  
+  [1X2.3 [33X[0;0YTower field constructions[133X[101X
+  
+  [33X[0;0YFor  a  composite  integer  [22Xm=n_1⋯  n_k[122X, where [22Xn_i, i=1,dots, k[122X are positive
+  integers  (not necessarily primes), it is possible to build [22XF_p^m[122X as a tower
+  of extensions [22XF_(dots ((p^{n_1})^n_2)dots)^n_k}[122X over its prime subfield [22XF_p[122X.
+  Instead  of  constructing  [22XF_p^m[122X  as  a  single extension of degree [22X[ F_p^m:
+  F_p]=m[122X  over  the prime field, the field is constructed in [22Xk[122X steps, building
+  an extension [22XmathcalK_i/mathcalK_i-1[122X of degree [22X[mathcalK_i:mathcalK_i-1]=n_i[122X
+  at  step  [22Xi[122X,  where  [22Xn_i[122X  is  a  factor in decomposition of [22Xm[122X, starting with
+  [22XmathcalK_0= F_p[122X:[133X
+  
+  
+  [24X[33X[0;6Y{\mathbb    F}_p=\mathcal{K}_0\subset    \mathcal{K}_1\subset   \dots\subset
+  \mathcal{K}_{k-1}     \subset     \mathcal{K}_k={\mathbb     F}_{\left(\dots
+  ((p^{{n_1}})^{n_2})\dots\right)^{n_k}} \cong {\mathbb F}_{p^m}[133X
+  
+  [124X
+  
+  [33X[0;0Ywith their corresponding orders[133X
+  
+  
+  [24X[33X[0;6Yp\leq  p^{n_1}\leq p^{n_1\cdot n_2}\leq \dots \leq p^{n_1\cdots n_k} = p^m ,
+  {\rm where\; } m=n_1\cdots n_k[133X
+  
+  [124X
+  
+  [33X[0;0YNote  that  the  field obtained with each extension is isomorphic to a field
+  whose  order is [22Xp[122X to the power of partial product of extension degrees up to
+  the  current  extension,  for example [22XF_(p^n_1)^n_2}≅ F_p^n_1⋅ n_2}[122X. For the
+  generalized  methods for generating tower field bases to arbitrary degree of
+  extension and different bases, e.g., a mix of polynomial and normal bases, a
+  distinction  is  made between [13Xreference field[113X defining polynomials (RDP) and
+  [13Xextension  field[113X  defining  polynomial  (EDP). This distinction is explained
+  with  the  example  [22XF_2 ⊂ F_2^2⊂ F_(2^2)^2 ⊂ F_((2^2)^2)^2 ≅ F_2^8[122X, shown in
+  figure: /See diagrams in HTML and PDF versions of the manual/[133X
+  
+  [30X    [33X[0;6Y[13XThe  reference  field[113X defining polynomials are labelled [22Xp_1, p_2, p_3[122X.
+        They  are  the defining polynomials of the isomorphic reference finite
+        fields.  For  example,  [22Xp_3[122X  is  a degree 8 defining polynomial of the
+        finite field [22XF_2^8[122X, which is isomorphic to [22XF_((2^2)^2)^2[122X.[133X
+  
+  [30X    [33X[0;6Y[13XThe  extension  field[113X defining polynomials are labelled [22Xf_1, f_2, f_3[122X,
+        and  can  be  seen on the outer left side of the diagram. For example,
+        the  degree 2 polynomial [22Xf_3[122X is irreducible over [22XF_(2^2)^2[122X and used to
+        construct [22XF_((2^2)^2)^2/ F_(2^2)^2[122X as [22XF_(2^2)^2[x]/(f_3)[122X.[133X
+  
+  [33X[0;0YWith each new extension [22XF_q^2/ F_q[122X, a [13Xper-level[113X basis (PLB) can be found (or
+  [13Xextension  basis[113X  (EB)  for  easier  reference  to EDP). For this example, a
+  polynomial basis with the root of the EDP [22Xf_i[122X is used for each level:[133X
+  
+  [30X    [33X[0;6Y[22XB_{ F_((2^2)^2)^2/ F_(2^2)^2}={1,ν}[122X, where [22Xf_3(ν)=0[122X[133X
+  
+  [30X    [33X[0;6Y[22XB_{ F_(2^2)^2/ F_2^2}={1,μ}[122X, where [22Xf_2(μ)=0[122X[133X
+  
+  [30X    [33X[0;6Y[22XB_{ F_2^2/ F_2={1,λ}[122X, where [22Xf_1(λ)=0[122X[133X
+  
+  [33X[0;0YAn  element  [22XF_((2^2)^2)^2[122X  is  represented  w.r.t.  the per-level basis [22XB_{
+  F_((2^2)^2)^2/  F_(2^2)^2}[122X  as  [22XA=a_0  +a_1ν[122X, where [22Xa_0,a_1∈ F_(2^2)^2[122X. Both
+  coordinates  [22Xa_0,a_1[122X  are  then  represented  w.r.t. the per-level basis [22XB_{
+  F_(2^2)^2/ F_2^2}[122X as [22Xa_i=a_i0 +a_i1μ[122X, where [22Xa_i0,a_i1∈ F_2^2[122X, and so on. The
+  PLBs lead to the construction of a tower field basis (TFB) of the isomorphic
+  field [22X{ F_2^8/ F_2[122X obtained as products of PLB elements:[133X
+  
+  
+  [24X[33X[0;6YTFB_{{\mathbb  F}_{2^8}/{\mathbb  F}_2}=\{t_0,  t_1,  \dots  ,  t_7\}  =\{1,
+  \lambda, \mu, \mu\lambda,\nu, \nu\lambda, \nu\mu, \nu\mu\lambda\}[133X
+  
+  [124X
+  
+  [33X[0;0YThe  per-level  bases are used for submodule extraction and generation. When
+  needed,  the  TFB  is  used  for transition matrices between the tower field
+  construction  and  the isomorphic field, construced with a single extension,
+  e.g.,  between  [22XF_((2^2)^2)^2[122X  and  [22XF_2^8[122X.  TFB is also used to generate the
+  testvectors for the top-level hardware modules.[133X
+  
+  [1X2.3-1 GenerateTFBfromEBlist[101X
+  
+  [33X[1;0Y[29X[2XGenerateTFBfromEBlist[102X( [3XEBlist[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGenerateTFBfromEDPLwithMB[102X( [3XEDPlist[103X, [3XMlist[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGenerateTFBfromEDPLwithPB[102X( [3XEDPlist[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGenerateTFBfromEDPLwithPBdownto[102X( [3XEDPlist[103X ) [32X method[133X
+  [33X[1;0Y[29X[2XGenerateTFBfromEDPLwithNB[102X( [3XEDPlist[103X ) [32X method[133X
+  
+  [33X[0;0Y[10XGenerateTFBfromEBlist[110X  takes  an ordered list of bases [3XEBlist[103X, corresponding
+  to [22XF_(dots ((p^{n_1})^n_2)dots)^n_k}[122X, and returns [22XTFB_{ F_p^m/ F_p[122X.[133X
+  
+  [33X[0;0Y[10XGenerateTFBfromEDPLwithMB[110X  takes an ordered list of extension field defining
+  polynomials  [3XEDPlist[103X,  and  list  of extension instructions [10XMlist[110X containing
+  tuples   [10X[BasisType,   BasisDirection][110X,   with  currently  supported  values
+  [10XBasisType[110X[22X∈[122X[10X["PB",  "NB"][110X and [10XBasisDirection[110X[22X∈[122X[10X["to", "downto"][110X. The instruction
+  list  allows for mixed bases, i.e., a different type of basis on each level,
+  as shown in example below.[133X
+  
+  [33X[0;0YInternally,  we  use  GAP [10XDictionary[110X (Chapter 28 in the GAP reference manual
+  [GAP22]), and the [10XMlist[110X instructions to retrieve the strings [10X``GeneratePB''[110X,
+  [10X``GeneratePBdownto''[110X, [10X``GenerateNB''[110X, and concatenate them with brackets and
+  the  appropriate  strings  for  field  [10XF[110X and [10Xffe[110X. For example, the resulting
+  string  [10X``GenerateNB(F,  ffe)''[110X and corresponds exactly to the format of the
+  [2XGenerateNB[102X  ([14X2.2-1[114X)  method. Then, using the existing [2XEvalString[102X ([14XReference:
+  EvalString[114X)  (Section  27.9-5  in  the  GAP  reference  manual [GAP22]), [5XGAP[105X
+  executes  the  [10XGenerateNB[110X method with the given arguments. Such approach was
+  used in several parts of the automation framework, beyond the [5XFFCSA[105X package.[133X
+  
+  [33X[0;0Y[10XGenerateTFBfromEDPLwithPB[110X,        [10XGenerateTFBfromEDPLwithPBdownto[110X,       and
+  [10XGenerateTFBfromEDPLwithNB[110X  are  wrappers  for [10XGenerateTFBfromEDPLwithMB[110X with
+  [3XMlist[103X   composed   only  of  [10X["PB","to"][110X,  [10X["PB","downto"][110X  or  [10X["NB","to"][110X,
+  respectively.  returns the tower field basis of the finite field obtained as
+  a tower of extensions with extension defining polynomials provided as a list
+  of polynomials [22Xedpl = [f_1, f_2, dots, ,f_n][122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XK := GF(2);; x:= X(K, "x");;[127X[104X
+    [4X[25Xgap>[125X [27XEDPlist := [ x^2+x+Z(2)^0, x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^4) ];[127X[104X
+    [4X[28X[ x^2+x+Z(2)^0, x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^4) ][128X[104X
+    [4X[25Xgap>[125X [27XMlist := [["PB", "to"], ["NB", "to"], ["PB", "downto"]];[127X[104X
+    [4X[28X[ [ "PB", "to" ], [ "NB", "to" ], [ "PB", "downto" ] ][128X[104X
+    [4X[25Xgap>[125X [27XTFB1 := GenerateTFBfromEDPLwithMB(EDPlist, Mlist);[127X[104X
+    [4X[28XBasis( GF(2^8), [ Z(2^8)^178, Z(2^8)^8, Z(2^8)^229, Z(2^8)^59, Z(2^4)^6,[128X[104X
+    [4X[28XZ(2^4)^11, Z(2^4)^9, Z(2^4)^14 ] )[128X[104X
+    [4X[25Xgap>[125X [27Xf1 := EDPlist[1];; f2 := EDPlist[2];; f3 := EDPlist[3];;[127X[104X
+    [4X[25Xgap>[125X [27XF1 := FieldExtension(K,  f1);;  lambda := RootOfDefiningPolynomial(F1);[127X[104X
+    [4X[28XZ(2^2)[128X[104X
+    [4X[25Xgap>[125X [27XF2 := FieldExtension(F1, f2);;  mu := RootOfDefiningPolynomial(F2);[127X[104X
+    [4X[28XZ(2^4)^6[128X[104X
+    [4X[25Xgap>[125X [27XF3 := FieldExtension(F2, f3);;  nu := RootOfDefiningPolynomial(F3);[127X[104X
+    [4X[28XZ(2^8)^76[128X[104X
+    [4X[25Xgap>[125X [27XB1 := GeneratePB(F1, lambda);[127X[104X
+    [4X[28XBasis( GF(2^2), [ Z(2)^0, Z(2^2) ] )[128X[104X
+    [4X[25Xgap>[125X [27XB2 := GenerateNB(F2, mu);[127X[104X
+    [4X[28XBasis( AsField( GF(2^2), GF(2^4) ), [ Z(2^4)^6, Z(2^4)^9 ] )[128X[104X
+    [4X[25Xgap>[125X [27XB3 := GeneratePBdownto(F3, nu);[127X[104X
+    [4X[28XBasis( AsField( AsField( GF(2^2), GF(2^4) ), GF(2^8) ), [ Z(2^8)^76, Z(2)^0 ] )[128X[104X
+    [4X[25Xgap>[125X [27Xfor i in [1..2] do for j in [1..2] do for k in [1..2] do[127X[104X
+    [4X[25X>[125X [27X       Print(TFB1[4*(i-1)+2*(j-1)+ k], "=" ,  B3[i],"*",B2[j],"*",B1[k],[127X[104X
+    [4X[25X>[125X [27X       " is ", TFB1[4*(i-1)+2*(j-1)+ k] = B3[i]*B2[j]*B1[k], "\n");[127X[104X
+    [4X[25X>[125X [27Xod; od; od;[127X[104X
+    [4X[28XZ(2^8)^178=Z(2^8)^76*Z(2^4)^6*Z(2)^0 is true[128X[104X
+    [4X[28XZ(2^8)^8=Z(2^8)^76*Z(2^4)^6*Z(2^2) is true[128X[104X
+    [4X[28XZ(2^8)^229=Z(2^8)^76*Z(2^4)^9*Z(2)^0 is true[128X[104X
+    [4X[28XZ(2^8)^59=Z(2^8)^76*Z(2^4)^9*Z(2^2) is true[128X[104X
+    [4X[28XZ(2^4)^6=Z(2)^0*Z(2^4)^6*Z(2)^0 is true[128X[104X
+    [4X[28XZ(2^4)^11=Z(2)^0*Z(2^4)^6*Z(2^2) is true[128X[104X
+    [4X[28XZ(2^4)^9=Z(2)^0*Z(2^4)^9*Z(2)^0 is true[128X[104X
+    [4X[28XZ(2^4)^14=Z(2)^0*Z(2^4)^9*Z(2^2) is true[128X[104X
+    [4X[25Xgap>[125X [27Xlambda*mu*nu=TFB1[2];[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-2 FindEDPLAllfromEDL[101X
+  
+  [33X[1;0Y[29X[2XFindEDPLAllfromEDL[102X( [[3Xe1[103X, [3Xe2[103X, [3X...[103X, [3Xek[103X] ) [32X method[133X
+  
+  [33X[0;0Yfor extension degree list (EDL) [3X[e1, e2, ..., ek][103X, method [10XFindEDPLAllfromEDL[110X
+  returns  [10Xk[110X  lists  of monic polynomials of degree [3Xei[103X, [10Xi=1,...,k[110X, irreducible
+  over  the  subfield.  It  is  using  the  method [2XFindMonicIrreduciblePolyAll[102X
+  ([14X2.1-1[114X).[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XK := GF(2);; listall := FindEDPLAllfromEDL([2,2,2]);[127X[104X
+    [4X[28X[ [ x^2+x+Z(2)^0 ], [ x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^2), x^2+x+Z(2^2), x^2[128X[104X
+    [4X[28X+x+Z(2^2)^2, x^2+Z(2^2)^2*x+Z(2)^0, x^2+Z(2^2)^2*x+Z(2^2)^2 ], [ x^2+[128X[104X
+    [4X[28XZ(2^4)^3*x+Z(2)^0, x^2+Z(2^4)^3*x+Z(2^2), x^2+Z(2^4)^3*x+Z(2^4)^2,[128X[104X
+    [4X[28X   ... OMITTED FOR BREVITY ....[128X[104X
+    [4X[28Xx^2+x+Z(2^4)^14, x^2+Z(2^2)*x+Z(2^4), x^2+Z(2^2)*x+Z(2^4)^2,[128X[104X
+    [4X[28X   ... OMITTED FOR BREVITY ....[128X[104X
+    [4X[28Xx^2+Z(2^4)^13*x+Z(2^4)^14 ] ][128X[104X
+    [4X[25Xgap>[125X [27XEDPlist := [ listall[1][1], listall[2][1], listall[3][25] ];[127X[104X
+    [4X[28X[ x^2+x+Z(2)^0, x^2+Z(2^2)*x+Z(2)^0, x^2+Z(2^2)*x+Z(2^4) ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  

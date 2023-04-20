@@ -1,76 +1,64 @@
-name: GitHubPagesForGAP
-version: "0.2"
-license: "0BSD"
-date: 2017-02-04
+name: FFCSA
+version: "0.9.4"
+date: 2023-04-20
 description: |
-    A GitHub Pages generator for GAP packages
+    FFCSA - Finite Field Constructions, Search and Algorithms
 
 authors:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: A. U. Thor
+    - name: Nusa Zidaric
+      url: http://comsec.uwaterloo.ca/
 
 maintainers:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: Jan Itor
+    - name: Nusa Zidaric
+      url: http://comsec.uwaterloo.ca/
 
-GAP: ">=4.8.1"
+GAP: "4.8"
 
 needed-pkgs:
     - name: "GAPDoc"
-      version: ">= 1.2"
+      version: "1.6"
       url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
-    - name: "IO"
-      version: ">= 4.1"
-      url: "https://gap-packages.github.io/io"
+    - name: "FSR"
+      version: "1.0.0"
+      url: "https://nzidaric.github.io/FSR"
 
-suggested-pkgs:
-    - name: "orb"
-      version: ">= 4.2"
-      url: "https://gap-packages.github.io/orb"
-
-www: https://gap-system.github.io/GitHubPagesForGAP/
+www: https://nzidaric.github.io/ffcsa
 readme: README.md
-packageinfo: https://gap-system.github.io/GitHubPagesForGAP/PackageInfo.g
-github: https://github.com/gap-system/GitHubPagesForGAP
+packageinfo: https://nzidaric.github.io/ffcsa/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.gz
-    - name: .tar.bz2
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.bz2
+      url: https://github.com/nzidaric/ffcsa/releases/download/v0.9.4/FFCSA-0.9.4.tar.gz
 
 abstract: |
-    This is a pseudo package that contains no actual  <span class="pkgname">GAP</span> code. Instead, it is a template for other  GAP packages that allows to quickly setup GitHub Pages.
+    This package was designed for implementations of (cryptographic) hardware based on finite field arithmetic.
 
-status: other
-doc-html: doc/chap0.html
+status: dev
+doc-html: doc/chap0_mj.html
 doc-pdf: doc/manual.pdf
 keywords: |
-    GitHub Pages, GAP.
+    package FFCSA, finite fields, constructions, representations, search, algorithms.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>HTI17</span>]   <b class='BibAuthor'>Horn, M., Thor, A. U. and Itor, J.</b>,
-     <i class='BibTitle'>GitHubPagesForGAP, A GitHub Pages generator for GAP packages,
-             Version 0.2</i>
-     (<span class='BibYear'>2017</span>)<br />
+    [<span class='BibKey'>Zid23</span>]   <b class='BibAuthor'>Zidaric, N.</b>,
+     <i class='BibTitle'>FFCSA, FFCSA - Finite Field Constructions, Search and Algorithms,
+             Version 0.9.4</i>
+     (<span class='BibYear'>2023</span>)<br />
     (<span class='BibNote'>GAP package</span>),
-    <span class='BibHowpublished'><a href="https://gap-system.github.io/GitHubPagesForGAP/">https://gap-system.github.io/GitHubPagesForGAP/</a></span>.
+    <span class='BibHowpublished'><a href="https://nzidaric.github.io/ffcsa">https://nzidaric.github.io/ffcsa</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ GitHubPagesForGAP0.2,
-      author =           {Horn, M. and Thor, A. U. and Itor, J.},
-      title =            {{GitHubPagesForGAP}, A GitHub Pages generator for GAP packages, {V}ersion 0.2},
-      month =            {Feb},
-      year =             {2017},
+    @misc{ FFCSA0.9.4,
+      author =           {Zidaric, N.},
+      title =            {{FFCSA}, FFCSA - Finite Field Constructions, Search and Algorithms, {V}ersion 0.9.4},
+      month =            {Apr},
+      year =             {2023},
       note =             {GAP package},
-      howpublished =     {\href                              {https://gap-system.github.io/GitHubPagesForGAP/}
-                          {\texttt{https://gap-system.github.io/}\discretionary
-                          {}{}{}\texttt{GitHubPagesForGAP/}}},
-      keywords =         {GitHub Pages; GAP},
-      printedkey =       {HTI17}
+      howpublished =     {\href          {https://nzidaric.github.io/ffcsa}          {\texttt{https://nzidaric.github.io/}\discretionary
+                          {}{}{}\texttt{ffcsa}}},
+      keywords =         {package FFCSA; finite fields; constructions; representations; search; algorithms},
+      printedkey =       {Zid23}
     }
 
