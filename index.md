@@ -43,6 +43,9 @@ The following additional GAP packages are not required, but suggested:
  {% endfor %}
 {% endif %}
 
+## Acknowledgements
+Mark Aagaard, Guang Gong
+
 {% if site.data.package.citeas %}
 ## Citing
 
