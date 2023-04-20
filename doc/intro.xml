@@ -1,0 +1,128 @@
+<Chapter Label="ch:intro"><Heading>Introduction and First Methods</Heading>
+<Section Label="XMLintro"><Heading>Motivation and basic funtionality</Heading>
+The following short examples (Examples \ref{ex6.1}-\ref{ex6.3})
+show the interplay of different parts of the &FFCSA; package and provide
+an insight into its structure. They illustrate the basic functionality of
+the package: the constructions, the search and the algorithms. The &FFCSA;
+methods are tasked with finding (special) elements, finding (special)
+polynomials, generating matrices and bases, computing Hamming weights,
+and finally, obtaining expressions for finite field arithmetic algorithms.
+The search is closely linked to the Design Space Exploration (DSE),
+theoretical estimates (naive methods such as Hamming weights, but will be
+extended in the future), and can be used to make certain architectural
+decisions early in the design flow. Below we list a few motivational examples.
+
+<Subsection Label="example1"><Heading>A small complexity normal basis</Heading>
+A small complexity normal basis is believed to yield smaller hardware w.r.t.
+a normal basis with higher complexity  <Cite Key="van"/>. A small complexity
+normal basis can be found with exhaustive search, which requires several steps:
+(i.) find the normal elements, (ii.) build their multiplication tables T,
+(iii.) compute the Hamming weights of tables T, and (iv.) find the minimum
+Hamming Weight T. This example is covered in more detail in
+<Ref Sect="ONB"/>.
+</Subsection>
+
+
+<Subsection Label="example2">
+  <Heading>A small complexity transition matrix</Heading>
+Another more complex example is a finite field for which no optimal
+normal bases exist, for example <M>{\mathbb F}_{2^{16}}</M>,
+but the algorithm requires a lot of exponentiations to powers of two.
+Normal bases are very convenient for the exponentiations. However, a tower
+field basis is more suitable for multiplications and inversions:
+the search criterion is to minimize the Hamming Weights of the transition
+matrices between tower field and normal bases. A less obvious middle step
+is constructing the tower field itself, requiring (a search for) an
+irreducible polynomial for the next level at each level of the tower.
+This example is covered in more detail in Section~REF!!!
+</Subsection>
+
+<Subsection><Heading>A finite field multiplier</Heading>
+Last but not least is the generation of expressions used for the hardware
+implementations, e.g., finite field multiplication. Specifically, to implement
+a <M>{\mathbb F}_{2^{4}}</M> multiplier, the following steps are performed:
+(i.) a specific defining polynomial of degree 4 is obtained by the search
+for defining polynomials, (ii.) the polynomial basis with the root of the
+defining polynomial is generated, (iii.) then matrix U  <Cite Key="AHnotes"/>
+is generated for this basis using a vector of variables
+<M>[a_0, a_1, a_2, a_3]</M>, and (vi.) the expressions for the 4 components
+of the product are obtained by multiplying the matrix U
+(with indeterminates <M>a_i</M>) with  the vector of variables
+<M>[b_0, b_1, b_2, b_3]</M>. Details are given in Section~REF!!!
+</Subsection>
+
+
+<!--
+<Example>testing
+
+</Example>
+-->
+However, theoretically optimal does not neccesarily yield the best hardware.
+There are application considerations, ...
+
+And finally, there are physical limitations that affect architectural decisions.
+For example, subexpression elimination will yield smallest area profile for a
+hardware module, but once implemented, long propagation delays and routing
+congestions can case this hardware module to be inferior to a module containing
+an copy of this subexpression.
+
+
+
+</Section>
+
+
+<Section Label="XMLweight">
+<Heading>Miscellaneous and Weight methods</Heading>
+<!--<#Include Label="CCLeaders">-->
+<#Include Label="PolyPhi">
+<#Include Label="NrNormalFFE">
+<#Include Label="NrIrreduciblePoly">
+<#Include Label="WeightMatrixBoth">
+<#Include Label="WeightPolynomial">
+</Section>
+
+
+<Section Label="XMLmatrix"><Heading>Matrices for matrix-vector multipliers</Heading>
+
+Let <M>B_{\mathcal{F}/\mathcal{K}}=\{\rho^{(0)},\rho^{(1)},\dots,\rho^{(m-1)}\}=
+\{\rho^{(i)}\}_{i=0}^{m-1}</M>
+be an arbitrary basis of <M>\mathcal{F}/\mathcal{K}</M>, where
+<M>m=[\mathcal{F}:\mathcal{K}]</M> and <M>\rho\in\mathcal{F}</M>.
+Then for <M>A\in\mathcal{F}</M> w.r.t.basis <M>B_{\mathcal{F}/\mathcal{K}}</M>
+we use the notation:
+<List>
+<Item> <M>A =\sum\limits_{i=0}^{m-1}a_i\rho^{(i)}</M> for the representation,
+</Item>
+<Item> <M>[A]_{B_{\mathcal{F}/\mathcal{K}}}=[a_0, a_1, \dots , a_{m-1}]</M>
+for its vector form,
+</Item>
+<Item> <M>[A]_{(i)} = a_i</M>
+for the <M>i</M>-th coordinate, where <M>0\leq i\leq m-1</M>.
+</Item>
+</List>
+
+We introduce the notion of <E>direction</E> for the basis, adopted from
+hardware design. For defining polynomial <A>f</A> of degree <M>m</M>,
+where <M>f(\omega)=0</M>, the polynomial basis with direction
+<List>
+<Item><E>to</E>:  <M>PB_{\rm to}=\{1,\omega,\dots, \omega^{m-1}\}</M>
+ (note on first notation: <M>\rho^{(0)}=1</M>)
+</Item>
+<Item><E>downto:</E> <M>PB_{\rm downto}=\{\omega^{m-1}, \dots, \omega,1\}</M>.
+ (note on first notation: <M>\rho^{(0)}=\omega^{m-1}</M>)
+</Item>
+</List>
+For normal bases, we only consider the direction :
+<List>
+<Item><E>to</E>:  <M>NB=\{\beta, \beta^2,\dots,\beta^{2^{m-1}}\} </M>
+where <M>\beta</M> is a normal element.
+ (note on first notation: <M>\rho^{(0)}=\beta</M>)
+</Item>
+</List>
+<#Include Label="MatrixMultByConst">
+<#Include Label="TransitionMatrix">
+<#Include Label="ReductionMatrix">
+<#Include Label="MatrixU">
+<#Include Label="MatrixM">
+</Section>
+</Chapter>

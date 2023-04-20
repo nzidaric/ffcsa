@@ -1,0 +1,63 @@
+
+
+
+<Chapter Label="XMLprofiling"><Heading>Profiling</Heading>
+<Section Label="ONB"><Heading>Profiling and special elements</Heading>
+
+
+The FFCSA package contains a set of profiling methods that are  closely linked
+to the  search for <E>special</E> elements and polynomials. The &FFCSA; package
+<E>profiles</E> are always a (set of) Hamming weight(s):
+a theoretical estimate of area, as was already  noted for the
+<Ref Oper="WeightMatrix"/> method, or delay, as was
+noted for the <Ref Oper="WeightMatrixMaxRow"/>.
+
+Motivation example <Ref Sect="example1"/> is a search for a small complexity
+normal basis. The particular normal basis has an impact on complexity of the
+  arithmetic performed with field elements in normal
+  basis representation. Normal bases can be evaluated using
+  <E>complexity</E> <M>C_T</M> defined as the number of nonzero elements in
+  <E>multiplication table</E> <M>T</M>  <Cite Key="mullen" Where="(5.3.1)"/>.
+ Multiplication table T is an <M>(m\times m)</M> matrix
+ <M>T=[t_{ij}]</M> over <M>{\mathbb F}_q</M>, defined for a particular normal
+element <M>\alpha\in {\mathbb F}_{2^m}</M>, in such a way that the coefficients
+<M>t_{ij}</M> satisfy
+
+<Display>
+\alpha\cdot\alpha^{q^i}=\sum_{j=0}^{m-1} t_{ij}\alpha^{q^j}
+\quad {\rm for }\quad  0\leq i\leq m-1.
+</Display>
+
+The complexity is bounded by <M>2m-1\leq C_T\leq m^2-m+1</M>,
+and when <M>C_T=2m-1</M> the  basis is said to be \emph{optimal normal basis},
+abbreviated ONB  <Cite Key="mullen" Where="(5.2.5)"/>.
+
+<#Include Label="IsONBI">
+<#Include Label="IsONBII">
+
+
+<#Include Label="MultiplicationTableT">
+<#Include Label="FindONBIGenerator">
+<#Include Label="ProfileNBGenerators">
+<#Include Label="ProfileNBtoBTransitionMat">
+<#Include Label="ProfileGamma">
+
+
+
+
+
+
+<!-- Implementation details on {\tt ComplexityOfT} will be shown in Section~\ref{nbmul7}.-->
+
+
+
+
+
+</Section>
+
+
+<Section Label="polyspecial"><Heading>Profiling and special polynomials</Heading>
+<#Include Label="FindPrimitivePolyFixedTaps">
+</Section>
+
+</Chapter>

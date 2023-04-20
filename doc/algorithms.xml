@@ -1,0 +1,15 @@
+<Chapter Label="XMLalgo"><Heading>Algorithms</Heading>
+<Section Label="algo1"><Heading>blabla</Heading>
+<#Include Label="ChooseFieldElms">
+<#Include Label="SLL">
+</Section>
+<Section Label="algo2"><Heading>blablabla</Heading>
+<#Include Label="MultEvecMatrix">
+<#Include Label="MatrixMultByConstExpression">
+<#Include Label="MatrixExpression">
+<#Include Label="FFA_mult_convolution">
+<#Include Label="FFA_mult_matrixU">
+<#Include Label="FFA_mult_matrixM">
+</Section>
+
+</Chapter>

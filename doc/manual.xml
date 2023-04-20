@@ -1,0 +1,117 @@
+<?LaTeX ExtraPreamble="\usepackage[pdftex]{graphicx}"?>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Book SYSTEM "gapdoc.dtd"
+  [
+  <!ENTITY FSR "<Package>FSR</Package>">
+  <!ENTITY FFCSA "<Package>FFCSA</Package>">
+  <!ENTITY VERSION "1.0.4">
+  ] >
+
+
+
+
+<!-- The documentation to the GAPDoc system.
+     Copyright 2000-2022 by Frank Lübeck and Max Neunhöffer
+     Lehrstuhl für Algebra und Zahlentheorie, RWTH Aachen, Germany -->
+
+<Book Name="FFCSA">
+
+<TitlePage>
+  <Title>&FFCSA;</Title>
+  <Subtitle>Finite Field Constructions, Search and Algorithms</Subtitle>
+  <Version>Version &VERSION;</Version>
+
+  <Author>Nusa Zidaric
+    <Email>nzidaric@uwaterloo.ca</Email>
+  </Author>
+  <Date>April 2023</Date>
+
+
+  <Abstract>
+
+  <Index Key="FFCSA package">&FFCSA; package</Index>
+
+  The &GAP; package &FFCSA; was designed for implementations of (cryptographic)
+  hardware based on finite field arithmetic, and is a crucial part of a framework
+  for automated synthesis and Design Space Exploration (DSE). Coceptually,
+  &FFCSA; is divided into three parts: finite field constructions, search
+  algorithms and arithmetic algorithms. Search is further divided into search
+  for field elements and for  polynomials, that meet specified criteria. This
+  criteria can be general (a normal element, an irreducible polynomial, etc.),
+  or specialized (the smallest area or delay, number of tap positions, \eetc).
+  The connection between representation of elements and hardware efficiency has
+  been known for a long time; one of the eariest explamples is the use of normal
+  bases for algorithms heavy on exponentiations to the powers of 2. &FFCSA;
+  currently supports polynomial bases, normal bases, and their dual bases. When
+  generating the tower field bases, different options are possible, using either
+  the same type of basis on each level, or mixed bases, e.g., polynomial basis on
+  one level and normal basis on the next. The third part consists of the algorithms,
+  or rather, a collection of methods that generate the expressions required to
+  implement an arithmetic operation according to a specified algorithm,
+  parametrized for the current instance (defining polynomial, a basis, etc.).
+  Many different algorithms  are known in literature. The package supports basic
+  functionality, i.e., the generalized algorithm for multiplication. It can
+  generate expressions for multiplications, arbitrary exponentiations,
+  matrix-vector multipliers, and some special cases, e.g., the expression for
+  the trace computation. The &FFCSA; package is designed to be easily extendable
+  with new algorithms, some of which are more suitable for sequential and some
+  for parallel hardware implementations. Using &GAP; to implement &FFCSA;, thus
+  as the entry point to DSE, brings the awareness of underlying structures to the
+  hardware synthesis flow.
+
+
+    <!-- Most FFCSA    methods require only the  method call and occasional
+   initial parameter setup. The outputs  appear in the GAP prompt. Future  work  includes
+  method optimizations, extending the functionality, and extending the ``reach''
+  in terms of  field size.-->
+
+  </Abstract>
+
+  <Copyright>
+  <!--  &copyright; 2017-&RELEASEYEAR; by Nusa Zidaric <P/> -->
+    &copyright; by Nusa Zidaric <P/>
+    &FFCSA; is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version. For details, see the FSF's own site
+    <URL>http://www.gnu.org/licenses/gpl.html</URL>.
+    <P/>
+
+    If you obtained &FFCSA;, we would be grateful for a short notification
+    sent to the author. If you publish a result which was partially obtained
+    with the usage of &FFCSA;, please cite it in the following form:
+    <P/>
+
+    Zidaric, N., FFCSA, Finite Field Constructions, Search and Algorithms, Version 1.0.4 (2023)
+
+  </Copyright>
+
+  <Acknowledgements>
+  By Nusa Zidaric:
+  This work started as a part of my thesis. I would like to thank my supervisors,
+  Dr. Mark Aagaard and Dr. Guang Gong. For the countless hours of discussions, which
+  contributed to the contents and structure of this package. I would like to thank
+  Dr. Aledandar Jurisic for introducing me to finite fields and always lending a
+  help on this subject. I would like to thank Dr. Olexandr Konovalov
+  for his advice during package implementation and reslease, neither of
+  which would be possible without his help.
+  </Acknowledgements>
+</TitlePage>
+
+<TableOfContents/>
+
+<Body>
+
+<#Include SYSTEM "intro.xml">
+<#Include SYSTEM "bases.xml">
+<#Include SYSTEM "profiling.xml">
+<#Include SYSTEM "algorithms.xml">
+
+</Body>
+
+<Bibliography Databases="manual"/>
+</Book>
+
+<!-- ==================================================================== -->
