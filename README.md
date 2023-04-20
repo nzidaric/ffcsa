@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/nzidaric/fsr.svg?branch=master)](https://travis-ci.org/nzidaric/ffcsa)
-[![Code Coverage](https://codecov.io/github/nzidaric/ffcsa/coverage.svg?branch=master&token=)](https://codecov.io/gh/nzidaric/ffcsa)
-
 # The FFCSA package for GAP
 
 This is the README file for the GAP package
