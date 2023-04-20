@@ -17,7 +17,7 @@
 ##  <M>dvec=\left[d_0,\dots,d_{2m-2}\right]</M>, with default direction {\tt To},
 ##  where <M>m=[{\FFF:\FFK}]</M> is the degree of extension. Vector <M>dvec</M>
 ##  is needed for the two-step classic multiplication. <P/>
-##  Method <C>ChooseFieldElmsDownto} creates vectors
+##  Method <C>ChooseFieldElmsDownto</C> creates vectors
 ##  <M>avec=\left[a_{m-1}, \dots , a_0\right]</M>,
 ##  <M>bvec=\left[b_{m-1}, \dots , b_0\right]</M>, and
 ##  <M>dvec=\left[d_{2m-2},\dots,d_0\right]</M>, with default direction {\tt To},
@@ -47,7 +47,7 @@ DeclareGlobalFunction( "ChooseFieldElmsDownto" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 ## all of them are in tst, FIX needed for matrices !!!
- 
+
 DeclareOperation("SLL", [IsVector, IsInt]);
 DeclareOperation("SLL", [IsList, IsInt]);
 DeclareOperation("SRL", [IsVector, IsInt]);
