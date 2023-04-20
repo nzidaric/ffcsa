@@ -57,5 +57,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: manual
-          path: ./doc/FFCSA.pdf
+          path: ./doc/manual.pdf
           if-no-files-found: error
