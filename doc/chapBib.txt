@@ -2,22 +2,27 @@
   
   [1XReferences[101X
   
-  [[20XDes09[120X]  [16XDeschamps,  J.-P.[116X, [17XHardware implementation of finite-field arithmetic [117X, Hardware implementation of finite-field arithmetic,
-  McGraw-Hill, Electronic engineering, New York ; (2009).
+  [[20XDes09[120X] [16XDeschamps, J.-P.[116X, [17XHardware implementation of finite-field arithmetic
+  [117X,   Hardware   implementation   of   finite-field  arithmetic,  McGraw-Hill,
+  Electronic engineering, New York ; (2009).
   
   [[20XGAP22[120X] [17XGAP - Reference Manual, Release 4.12.2[117X, The GAP~Group (2022).
   
-  [[20XHas17[120X]  [16XHasan,  M.  A.[116X,  [17XSelected Topics in Cryptographic Computations[117X, ECE-720 (Topic 2) Lecture Notes, {U}niversity of {W}aterloo
-  (2017).
+  [[20XHas17[120X] [16XHasan, M. A.[116X, [17XSelected Topics in Cryptographic Computations[117X, ECE-720
+  (Topic 2) Lecture Notes, {U}niversity of {W}aterloo (2017).
   
-  [[20XMBG+92[120X]  [16XMenezes, A., Blake, I., Gao, S., Mullin, R., Vanstone, S. and Yaghoobian, T.[116X, [17XApplications of finite fields [117X, Applications
-  of  finite  fields,  Kluwer  Academic  Publishers,  The  Kluwer international series in engineering and computer science ; SECS 199.
-  Communications and information theory., Boston (1992).
+  [[20XMBG+92[120X]  [16XMenezes,  A.,  Blake,  I.,  Gao,  S., Mullin, R., Vanstone, S. and
+  Yaghoobian,  T.[116X,  [17XApplications  of  finite  fields  [117X, Applications of finite
+  fields,  Kluwer  Academic  Publishers,  The  Kluwer  international series in
+  engineering  and computer science ; SECS 199. Communications and information
+  theory., Boston (1992).
   
-  [[20XMOVW88[120X]  [16XMullin,  R.  C.,  Onyszchuk,  I.  M., Vanstone, S. A. and Wilson, R. M.[116X, [17XOptimal normal bases in GF(p^n)[117X, [18XDiscrete Applied
-  Mathematics[118X, Elsevier B.V, [19X22[119X, 2, Lausanne (1988), 149-161.
+  [[20XMOVW88[120X] [16XMullin, R. C., Onyszchuk, I. M., Vanstone, S. A. and Wilson, R. M.[116X,
+  [17XOptimal normal bases in GF(p^n)[117X, [18XDiscrete Applied Mathematics[118X, Elsevier B.V,
+  [19X22[119X, 2, Lausanne (1988), 149-161.
   
-  [[20XMP13[120X] [16XMullen, G. L. and Panario, D.[116X, [17XHandbook of Finite Fields[117X, Chapman \& Hall/CRC, 1st edition (2013).
+  [[20XMP13[120X]  [16XMullen, G. L. and Panario, D.[116X, [17XHandbook of Finite Fields[117X, Chapman \&
+  Hall/CRC, 1st edition (2013).
   
   
   

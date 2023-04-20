@@ -52,13 +52,16 @@ citeas: |
 bibtex: |
     @misc{ FFCSA0.9.4,
       author =           {Zidaric, N.},
-      title =            {{FFCSA}, FFCSA - Finite Field Constructions, Search and Algorithms, {V}ersion 0.9.4},
+      title =            {{FFCSA},  FFCSA  -  Finite Field Constructions, Search
+                          and Algorithms, {V}ersion 0.9.4},
       month =            {Apr},
       year =             {2023},
       note =             {GAP package},
-      howpublished =     {\href          {https://nzidaric.github.io/ffcsa}          {\texttt{https://nzidaric.github.io/}\discretionary
+      howpublished =     {\href               {https://nzidaric.github.io/ffcsa}
+                          {\texttt{https://nzidaric.github.io/}\discretionary
                           {}{}{}\texttt{ffcsa}}},
-      keywords =         {package FFCSA; finite fields; constructions; representations; search; algorithms},
+      keywords =         {package    FFCSA;    finite   fields;   constructions;
+                          representations; search; algorithms},
       printedkey =       {Zid23}
     }
 
