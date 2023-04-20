@@ -1,9 +1,9 @@
 <Chapter Label="XMLalgo"><Heading>Algorithms</Heading>
-<Section Label="algo1"><Heading>blabla</Heading>
+<Section Label="algo1"><Heading>Auxiliary functions</Heading>
 <#Include Label="ChooseFieldElms">
 <#Include Label="SLL">
 </Section>
-<Section Label="algo2"><Heading>blablabla</Heading>
+<Section Label="algo2"><Heading>Genetaring expressions</Heading>
 <#Include Label="MultEvecMatrix">
 <#Include Label="MatrixMultByConstExpression">
 <#Include Label="MatrixExpression">
