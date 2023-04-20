@@ -2,6 +2,10 @@
 ##
 #W ffbases.gd                 The FFCSA Package                         nusa
 ##
+##<!--
+##<Alt Only="LaTeX">{\color{red}
+##Note on search algos: results can be stored and reused - also faster ?
+##this is a TODO} </Alt>-->
 
 #############################################################################
 ##
@@ -243,7 +247,7 @@ DeclareOperation( "GenerateTFBfromEDPLwithNB", [IsRingElementCollection]);
 ##  for extension degree list (EDL) <A>[e1, e2, ..., ek]</A>, method
 ##  <C>FindEDPLAllfromEDL</C> returns <C>k</C> lists of monic polynomials
 ##  of degree <A>ei</A>, <C>i=1,...,k</C>, irreducible over the subfield.
-##  It is using the method <Ref Oper="FindMonicIrreduciblePolyAll"/>. 
+##  It is using the method <Ref Oper="FindMonicIrreduciblePolyAll"/>.
 ##  <Example>
 ##  <![CDATA[
 ##  gap> K := GF(2);; listall := FindEDPLAllfromEDL([2,2,2]);

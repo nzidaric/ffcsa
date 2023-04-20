@@ -15,7 +15,7 @@
 ##  <M>avec=\left[a_0, \dots , a_{m-1}\right]</M>,
 ##  <M>bvec=\left[b_0,\dots,b_{m-1}\right]</M>, and
 ##  <M>dvec=\left[d_0,\dots,d_{2m-2}\right]</M>, with default direction {\tt To},
-##  where <M>m=[{\FFF:\FFK}]</M> is the degree of extension. Vector <M>dvec</M>
+##  where <M>m=[F:K]</M> is the degree of extension. Vector <M>dvec</M>
 ##  is needed for the two-step classic multiplication. <P/>
 ##  Method <C>ChooseFieldElmsDownto</C> creates vectors
 ##  <M>avec=\left[a_{m-1}, \dots , a_0\right]</M>,
@@ -42,7 +42,7 @@ DeclareGlobalFunction( "ChooseFieldElmsDownto" );
 ##  <Meth Name="XORbw" Arg="vec, i"/>
 ##  <Description>
 ##  Simple vector manipulation functions: left/right logical/arithmetic shift,
-##  left/right rotation, bitwise {\tt AND}, {\tt XOR}.
+##  left/right rotation, bitwise <C>AND</C>, <C>XOR</C>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>

@@ -175,7 +175,4 @@ TFB is also used to generate the testvectors for the top-level hardware modules.
 <#Include Label="FindEDPLAllfromEDL">
 </Section>
 
-<Alt Only="LaTeX">{\color{red}
-Note on search algos: results can be stored and reused - also faster ?
-this is a TODO} </Alt>
 </Chapter>
