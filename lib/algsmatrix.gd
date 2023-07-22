@@ -5,11 +5,6 @@
 ##
 ##  Declaration file
 ##
-#Y
-#Y
-##
-
-
 
 ##  <#GAPDoc Label="MultEvecMatrix">
 ##  <ManSection>
@@ -38,7 +33,7 @@ DeclareOperation( "MultEvecMatrixEvec", [ IsVector, IsMatrix, IsVector]);
 ##  <Meth Name="MatrixMultByConstExpression" Arg="M, vec2"/>
 ##  <Meth Name="TransitionMatrixExpression" Arg="B1, B2, vec2"/>
 ##  <Description>
-##   
+##
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>

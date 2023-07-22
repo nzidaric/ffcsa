@@ -38,8 +38,8 @@ DeclareGlobalFunction( "ChooseFieldElmsDownto" );
 ##  <Meth Name="SRA" Arg="vec, i"/>
 ##  <Meth Name="ROL" Arg="vec, i"/>
 ##  <Meth Name="ROR" Arg="vec, i"/>
-##  <Meth Name="ANDbw" Arg="vec, i"/>
-##  <Meth Name="XORbw" Arg="vec, i"/>
+##  <Meth Name="ANDbw" Arg="vec1, vec2"/>
+##  <Meth Name="XORbw" Arg="vec1, vec2"/>
 ##  <Description>
 ##  Simple vector manipulation functions: left/right logical/arithmetic shift,
 ##  left/right rotation, bitwise <C>AND</C>, <C>XOR</C>.
