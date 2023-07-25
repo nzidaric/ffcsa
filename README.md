@@ -1,5 +1,6 @@
 [![Build Status](https://github.com/nzidaric/ffcsa/workflows/CI/badge.svg?branch=main)](https://github.com/nzidaric/ffcsa/actions?query=workflow%3ACI+branch%3Amain)
 [![Code Coverage](https://codecov.io/github/nzidaric/ffcsa/coverage.svg?branch=main&token=)](https://codecov.io/gh/nzidaric/ffcsa)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nzidaric/ffcsa/HEAD)
 
 # The FFCSA package for GAP
 
