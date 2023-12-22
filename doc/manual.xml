@@ -6,7 +6,7 @@
   [
   <!ENTITY FSR "<Package>FSR</Package>">
   <!ENTITY FFCSA "<Package>FFCSA</Package>">
-  <#Include Label="PKGVERSIONDATA">      
+  <#Include Label="PKGVERSIONDATA">
   ] >
 
 
@@ -24,7 +24,7 @@
   <Version>Version &VERSION;</Version>
 
   <Author>Nusa Zidaric
-    <Email>nzidaric@uwaterloo.ca</Email>
+    <Email>n.zidaric@liacs.leidenuniv.nl</Email>
   </Author>
   <Date>&RELEASEDATE;</Date>
 

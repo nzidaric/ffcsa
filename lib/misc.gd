@@ -22,8 +22,15 @@
 ##  <Meth Name="CCLeaders" Arg="p, m"/>
 ##
 ##  <Description>
-##  Based on <Cite Key="sdgc" Where="(3.18)"/>
-##  returns a list of leaders for cyclotomic cosets mod <A>p</A>^<A>m</A>-1
+##  Based on <Cite Key="sdgc" Where="(3.18)"/>, a (cyclotomic) coset <M>C_s</M>
+##  modulo <M>p^m-1</M>   is defined to be
+##  <Display>C_s=\{s, sp, \dots, sp^{m_s-1}\},</Display>
+##  where <M>m_s</M> is the smallest positive integer such that
+##  <M>s\equiv sp^{m_s}\,({\rm mod }p^m-1)</M>. The subscript <M>s</M> is chosen as
+##  the smallest integer in <M>C_s</M>, and $s$ is called the
+##  <E>coset leader</E> of <M>C_s</M>.
+##  <C>CCLeaders</C> returns a list of coset leaders in
+##  <M>{\mathbb Z}_{p^m-1}</M>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>

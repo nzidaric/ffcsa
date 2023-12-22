@@ -1,6 +1,7 @@
 <Chapter Label="ch:intro"><Heading>Introduction and First Methods</Heading>
 <Section Label="XMLintro"><Heading>Motivation and basic funtionality</Heading>
-The following short examples (Examples \ref{ex6.1}-\ref{ex6.3})
+The following short examples (Examples <Ref Subsect="example1"/>-
+<Ref Subsect="example3"/>)
 show the interplay of different parts of the &FFCSA; package and provide
 an insight into its structure. They illustrate the basic functionality of
 the package: the constructions, the search and the algorithms. The &FFCSA;
@@ -18,7 +19,7 @@ a normal basis with higher complexity  <Cite Key="van"/>. A small complexity
 normal basis can be found with exhaustive search, which requires several steps:
 (i.) find the normal elements, (ii.) build their multiplication tables T,
 (iii.) compute the Hamming weights of tables T, and (iv.) find the minimum
-Hamming Weight T. This example is covered in more detail in
+Hamming Weight table T. This example is covered in more detail in
 <Ref Sect="ONB"/>.
 </Subsection>
 
@@ -28,16 +29,17 @@ Hamming Weight T. This example is covered in more detail in
 Another more complex example is a finite field for which no optimal
 normal bases exist, for example <M>{\mathbb F}_{2^{16}}</M>,
 but the algorithm requires a lot of exponentiations to powers of two.
-Normal bases are very convenient for the exponentiations. However, a tower
+Normal bases are very convenient for the exponentiations
+<Ref Sect="ProfileNBtoBTransitionMat"/>. However, a tower
 field basis is more suitable for multiplications and inversions:
 the search criterion is to minimize the Hamming Weights of the transition
 matrices between tower field and normal bases. A less obvious middle step
 is constructing the tower field itself, requiring (a search for) an
 irreducible polynomial for the next level at each level of the tower.
-This example is covered in more detail in Section~REF!!!
+This example is covered in more detail in <Ref Sect="TFBdef"/>.
 </Subsection>
 
-<Subsection><Heading>A finite field multiplier</Heading>
+<Subsection Label="example3"><Heading>A finite field multiplier</Heading>
 Last but not least is the generation of expressions used for the hardware
 implementations, e.g., finite field multiplication. Specifically, to implement
 a <M>{\mathbb F}_{2^{4}}</M> multiplier, the following steps are performed:
@@ -48,7 +50,7 @@ is generated for this basis using a vector of variables
 <M>[a_0, a_1, a_2, a_3]</M>, and (vi.) the expressions for the 4 components
 of the product are obtained by multiplying the matrix U
 (with indeterminates <M>a_i</M>) with  the vector of variables
-<M>[b_0, b_1, b_2, b_3]</M>. Details are given in Section~REF!!!
+<M>[b_0, b_1, b_2, b_3]</M>. Details are given in <Ref Sect="algo2"/>.
 </Subsection>
 
 
@@ -73,7 +75,7 @@ an copy of this subexpression.
 
 <Section Label="XMLweight">
 <Heading>Miscellaneous and Weight methods</Heading>
-<!--<#Include Label="CCLeaders">-->
+<#Include Label="CCLeaders">
 <#Include Label="PolyPhi">
 <#Include Label="NrNormalFFE">
 <#Include Label="NrIrreduciblePoly">

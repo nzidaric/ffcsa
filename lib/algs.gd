@@ -14,13 +14,13 @@
 ##  Method <C>ChooseFieldElms</C> prepares vectors
 ##  <M>avec=\left[a_0, \dots , a_{m-1}\right]</M>,
 ##  <M>bvec=\left[b_0,\dots,b_{m-1}\right]</M>, and
-##  <M>dvec=\left[d_0,\dots,d_{2m-2}\right]</M>, with default direction {\tt To},
+##  <M>dvec=\left[d_0,\dots,d_{2m-2}\right]</M>, with default direction <C>To</C>,
 ##  where <M>m=[F:K]</M> is the degree of extension. Vector <M>dvec</M>
 ##  is needed for the two-step classic multiplication. <P/>
 ##  Method <C>ChooseFieldElmsDownto</C> creates vectors
 ##  <M>avec=\left[a_{m-1}, \dots , a_0\right]</M>,
 ##  <M>bvec=\left[b_{m-1}, \dots , b_0\right]</M>, and
-##  <M>dvec=\left[d_{2m-2},\dots,d_0\right]</M>, with default direction {\tt To},
+##  <M>dvec=\left[d_{2m-2},\dots,d_0\right]</M>, with default direction <C>To</C>,
 ##  Note that <M>a_i, b_j, d_k</M> are not coefficients, but
 ##  GAP variables to allow symbolic computation.
 ##  </Description>
@@ -76,6 +76,17 @@ DeclareOperation("ROR", [IsList, IsInt]);
 DeclareGlobalFunction( "ANDbw" ); # bitwise and
 DeclareGlobalFunction( "XORbw" ); # bitwise xor
 
+#############################################################################
+##
+#F   FFA_trace_PB(  <f> , <dir>) .
+## . . .
+##  <#GAPDoc Label="FFA_trace_PB">
+##  <ManSection>
+##  <Meth Name="FFA_trace_PB" Arg="f, dir"/>
+##  <Description>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
 
 DeclareOperation("FFA_trace_PB",
 	[  IsUnivariatePolynomial,  IsString]);

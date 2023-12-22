@@ -73,7 +73,7 @@ DB = \{ \frac{g_0}{f'(\alpha)}, \dots, \frac{g_{m-1}}{f'(\alpha)}\}
 </Section>
 
 
-<Section Label="PBDBdef">
+<Section Label="TFBdef">
   <Heading>Tower field constructions</Heading>
 For a composite integer <M>m=n_1\cdots n_k</M>, where
 <M>n_i, \, i=1,\dots, k</M> are positive integers (not necessarily primes),
@@ -115,7 +115,7 @@ For the generalized methods for generating tower field bases to arbitrary degree
 
 <Alt Only="LaTeX">\begin{figure}[b!]\centering\includegraphics{tower1}
   \caption{Finite field <M>{\mathbb F}_{((2^2)^2)^2}</M> - tower construction}\end{figure}</Alt>
-<Alt Only="HTML">&lt;img src="fsr.jpg" align="center" /></Alt>
+<Alt Only="HTML">&lt;img src="tower1.jpg" align="center" /></Alt>
 <Alt Only="Text">/See diagrams in HTML and PDF versions of the manual/</Alt>
 <P/>
 <List>

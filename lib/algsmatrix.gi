@@ -42,8 +42,8 @@ end);
 
 #############################################################################
 ##
-#F  MatrixExpression(  <B> , <C> , <vec>) .
-## . . . NB multiplication matrix for constant C
+#F  MatrixExpression(  <M> , <vec>) .
+## . . . general matrix M
 ##
 InstallMethod(MatrixExpression, "for general matrix M",
 [ IsFFECollCollColl and  IsRectangularTable, IsVector], function(M, vec)
@@ -63,6 +63,28 @@ local  m, n, Mnew, i, j, row ;
 
 	return Mnew;
 end);
+
+##not sure why would we even use the second one
+#InstallOtherMethod(MatrixExpression, "for general matrix M",
+#[ IsFFECollColl and  IsRectangularTable, IsVector], function(M, vec)
+#local  m, n, Mnew, i, j, row ;
+#	m := Length(M);
+#	n := Length(M[1]);
+#	Mnew := [];
+#	# make one T matrix for each column of U
+#	for i in [1..m] do
+#		row := [];
+#	#	Print("T for column ", i-1, "\n" );
+#		for j in [1..n] do
+#			row[j] := M[i][j] * vec;
+#		od;
+#		Mnew[i] := row;
+#	od;
+#
+#	return Mnew;
+#end);
+
+
 
 InstallMethod(MatrixUExpression, "multiplication matrix U", [IsBasis, IsVector],
 function(B, vec)
@@ -172,10 +194,17 @@ end);
 # use this one for TF for each PLB!!!
 InstallMethod( FFA_mult_matrixU, "matrixU multiplication for any basis",
 [  IsBasis, IsVector, IsVector], function(B, vec1, vec2)
-local Uexpr;
+local Uexpr, tmp, i;
 	Uexpr := MatrixUExpression(B, vec1);
 #	Print(Uexpr*vec2,"\n");
-	return  Uexpr*vec2;
+#	return Uexpr*vec2;
+	tmp := Uexpr*vec2;
+	for i in [1..Length(tmp)] do
+		if not IsZero(tmp[i]) then
+			tmp[i] := ReduceMonomialsOverField(LeftActingDomain(UnderlyingLeftModule(B)),tmp[i]); #for TF
+		fi;
+	od;
+	return  tmp;
 end);
 
 
@@ -228,7 +257,10 @@ local Uexpr, i;
 #	Print(Uexpr*vec2,"\n");
 	Uexpr := Uexpr*vec;
 	for i in [1..Length(Uexpr)] do
-		Uexpr[i] := ReduceMonomialsOverField(LeftActingDomain(UnderlyingLeftModule(B)),Uexpr[i]);#for TF
+		if not IsZero(Uexpr[i]) then
+			Uexpr[i] := ReduceMonomialsOverField(LeftActingDomain(UnderlyingLeftModule(B)),Uexpr[i]);#for TF
+			#Uexpr[i] := ReduceMonomialsOverField(UnderlyingLeftModule(B),Uexpr[i]);#for TF  ### wrong, because coeffs are from subfield!!!!
+		fi;
 	od;
 	return  Uexpr;
 end);
@@ -290,7 +322,10 @@ local A, i, j, exponent, S;
 		if exponent[j] = 1 then
 		 A := MatrixUExpression(B, S) * A;
 			for i in [1..Length(A)] do
-				A[i] := ReduceMonomialsOverField(LeftActingDomain(UnderlyingLeftModule(B)),A[i]); #for TF
+			  if not IsZero(A[i]) then
+						A[i] := ReduceMonomialsOverField(LeftActingDomain(UnderlyingLeftModule(B)),A[i]); #for TF
+						#A[i] := ReduceMonomialsOverField(UnderlyingLeftModule(B),A[i]); #for TF ### wrong, because coeffs are from subfield!!!!
+				fi;
 			od;
 		fi;
 		S := FFA_sq_matrixU(B, S);
@@ -343,7 +378,11 @@ end);
 
 InstallMethod( FFA_inv_matrixU, "matrixU inv for any basis",
 [  IsBasis, IsVector], function(B, vec)
-	return FFA_exp_matrixU(B, vec, 2^Length(vec)-2);
+local e;
+	#e := 2*Length(vec)-2; #only works for one extension
+	#e := Size(LeftActingDomain(UnderlyingLeftModule(B)))-2; #wrong, we need THIS field, not subfield
+	e := Size(UnderlyingLeftModule(B))-2;
+	return FFA_exp_matrixU(B, vec, e);
 end);
 
 

@@ -530,7 +530,8 @@ end);
 
 
 ## note absolute trace, maybe rethink the name ?
-InstallMethod( FFA_trace_PB, "2 step classic multiplication for PB",
+## TO-DO: TF trace 
+InstallMethod( FFA_trace_PB, "Absolute trace",
 [  IsUnivariatePolynomial, IsString], function(f, dir)
 local trace, F, w, PB, DB ;
 	if not (\in(dir,validBasisDirections )) then

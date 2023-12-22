@@ -40,3 +40,32 @@ gap> MatrixU(B);
       [ 0*Z(2), Z(2)^0, Z(2)^0, Z(2)^0 ], [ Z(2)^0, Z(2)^0, Z(2)^0, Z(2)^0 ] ] ]
 gap> MatrixUi(B,0);
 [ [ Z(2)^0, 0*Z(2), 0*Z(2), 0*Z(2) ], [ 0*Z(2), Z(2)^0, 0*Z(2), 0*Z(2) ], [ 0*Z(2), 0*Z(2), Z(2)^0, 0*Z(2) ], [ 0*Z(2), 0*Z(2), 0*Z(2), Z(2)^0 ] ]
+gap> ChooseFieldElms(F);
+
+variables
+[ "a_0", "a_1", "a_2", "a_3" ]
+[ "b_0", "b_1", "b_2", "b_3" ]
+[ "d_0", "d_1", "d_2", "d_3", "d_4", "d_5", "d_6" ]
+gap>  M := [ [ 0*Z(2), 0*Z(2), 0*Z(2), Z(2)^0 ], [ Z(2)^0, 0*Z(2), 0*Z(2), 0*Z(2) ], [ 0*Z(2), Z(2)^0, 0*Z(2), 0*Z(2) ], [ 0*Z(2), 0*Z(2), Z(2)^0, Z(2)^0 ] ];
+[ [ 0*Z(2), 0*Z(2), 0*Z(2), Z(2)^0 ], [ Z(2)^0, 0*Z(2), 0*Z(2), 0*Z(2) ], [ 0*Z(2), Z(2)^0, 0*Z(2), 0*Z(2) ],
+  [ 0*Z(2), 0*Z(2), Z(2)^0, Z(2)^0 ] ]
+gap> MultEvecMatrix(avec,M);
+[ a_1, a_2, a_3, a_0+a_3 ]
+gap> MultMatrixEvec(M,avec);
+[ a_3, a_0, a_1, a_2+a_3 ]
+gap> MultEvecMatrixEvec(avec,M,bvec);
+a_0*b_3+a_1*b_0+a_2*b_1+a_3*b_2+a_3*b_3
+gap> w := RootOfDefiningPolynomial(F);; B := GeneratePB(F,w);;
+gap> MatrixMultByConstExpression(B,w,avec);
+[ a_3, a_0, a_1, a_2+a_3 ]
+gap> MatrixMultByConst(B,w);
+[ [ 0*Z(2), 0*Z(2), 0*Z(2), Z(2)^0 ], [ Z(2)^0, 0*Z(2), 0*Z(2), 0*Z(2) ], [ 0*Z(2), Z(2)^0, 0*Z(2), 0*Z(2) ],
+  [ 0*Z(2), 0*Z(2), Z(2)^0, Z(2)^0 ] ]
+gap>  B1 := GeneratePB(F,w^3);
+Basis( GF(2^4), [ Z(2)^0, Z(2^4)^6, Z(2^4)^12, Z(2^4)^3 ] )
+gap> T1 := TransitionMatrix(B,B1); T2 := TransitionMatrix(B1,B);; T1 = Inverse(T2);
+[ [ Z(2)^0, 0*Z(2), Z(2)^0, 0*Z(2) ], [ 0*Z(2), Z(2)^0, 0*Z(2), Z(2)^0 ], [ 0*Z(2), Z(2)^0, 0*Z(2), 0*Z(2) ],
+  [ 0*Z(2), Z(2)^0, Z(2)^0, 0*Z(2) ] ]
+true
+gap> T1e := TransitionMatrixExpression(B,B1,avec);
+[ a_0+a_2, a_1+a_3, a_1, a_1+a_2 ]

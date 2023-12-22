@@ -18,11 +18,13 @@
 ##  <ManSection>
 ##  <!--<Func Name="FindPrimitivePolyFixedTapsList" Arg="of, F, poly, explist"/>-->
 ##  <Func Name="FindPrimitivePolyFixedTaps*" Arg="of, F, poly"/>
-##  <Func Name="FindPrimitivePolyFixedMinArea*" Arg="of, F, poly"/>
-##  <Func Name="FindPrimitivePolyFixedMinDelay*" Arg="of, F, poly"/>
+##  <Func Name="FindPrimitivePolyFixedMinArea" Arg="of, F, poly"/>
+##  <Func Name="FindPrimitivePolyFixedMinDelay" Arg="of, F, poly"/>
 ##
 ##  <Description>
-##
+##  * combines three methods:  <C>FindPrimitivePolyFixedTaps</C>,
+##  <C>FindPrimitivePolyFixedTapsList</C>, and
+##  <C>FindPrimitivePolyFixedTapsIgnoreConjugates</C>
 ##
 ##  </Description>
 ##  </ManSection>

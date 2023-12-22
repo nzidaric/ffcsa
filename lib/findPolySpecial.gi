@@ -1,13 +1,8 @@
 #############################################################################
 ##
-#W  findPolySpecial.gi                  TowerFields Package                  Nusa
+#W  findPolySpecial.gi               TowerFields Package                  Nusa
 ##
 ##  Installation file for functions of the TowerFields Package
-##
-#Y
-#Y
-##
-
 
 #############################################################################
 ##

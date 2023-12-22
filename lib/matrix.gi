@@ -278,6 +278,27 @@ InstallMethod(MatrixMi, "i-th component of NB multiplication matrix M",
 	return Mi;
 end);
 
+InstallMethod(MatrixMByFFE, "NB multiplication matrix M", [IsBasis],
+function(B)
+	local  m, T, M , bv, i, j ,ne;
+
+	m := Length(B);
+	bv := BasisVectors(B);
+	ne := bv[1];
+	M := [];
+
+	for i in [1..m] do
+		T := [];
+		for j in [1..m] do
+			T[j] :=  ne^(2^(i-1)+2^(j-1));
+		od;
+
+		M[i] := T;
+	od;
+
+	return M;
+end);
+
 
 #############################################################################
 ##

@@ -92,10 +92,10 @@ DeclareOperation( "ReductionMatrixRI", [ IsUnivariatePolynomial]);
 ##  <Meth Name="MatrixU" Arg="B"/>
 ##  <Meth Name="MatrixUi" Arg="B, i"/>
 ##  <Description>
-##  <C>MatrixU</C> returns the $m\times m$ matrix <M>U</M> with components
+##  <C>MatrixU</C> returns the <M>m\times m</M> matrix <M>U</M> with components
 ##  <M>u_{i,j}=[\rho^{(j)}\cdot A]_{(i)}</M>. <C>MatrixUi</C> returns the
 ##  <M>i</M>-th component of  matrix <M>U</M>.
-##  REF to Generalized Algo section for details!!!!<P/>
+##  For examples see <Ref Oper="FFA_mult_matrixU"/>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -110,20 +110,28 @@ DeclareOperation( "MatrixUi", [ IsBasis, IsInt]);
 ##
 ##  <#GAPDoc Label="MatrixM">
 ##  <ManSection>
+##  <Meth Name="MatrixMByFFE" Arg="B"/>
 ##  <Meth Name="MatrixM" Arg="B"/>
 ##  <Meth Name="MatrixMi" Arg="B, i"/>
 ##  <Description>
+##  Let <M>B=\{\beta, \beta^q, \dots , \beta^{q^{m-1}}\}</M> be a normal basis
+##  of  <M>{\mathbb F}_{q^m}/{\mathbb F}_{q}</M>.
+##  The method <C>MatrixMByFFE</C> returns the <M>m\times m</M> matrix, with
+##  components <M>m_{j,k}=\beta^{2^j+2^k}</M>.
 ##  <C>MatrixM</C> returns the <M>m\times m</M> matrix <M>M</M> with components
-##  <M>m_{j,k}=[\beta^{2^j+2^k}]</M> w.r.t. the normal basis
+##  <M>m_{j,k}=[\beta^{2^j+2^k}]_B</M> w.r.t. the normal basis
 ##  <M>B=\{\beta, \beta^2,\dots,\beta^{2^{m-1}}\} </M>.
 ##  <C>MatrixMi</C> returns the <M>i</M>-th component of  matrix <M>M</M>.
-##  REF to Massey-Omura Algo section for details!!!!<P/>
+##  For examples see <Ref Oper="FFA_mult_matrixM"/>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
 DeclareOperation( "MatrixM", [ IsBasis]);
 DeclareOperation( "MatrixMi", [ IsBasis, IsInt]);
+DeclareOperation( "MatrixMByFFE", [IsBasis]);
+
+
 
 
 #############################################################################

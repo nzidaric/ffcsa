@@ -9,26 +9,42 @@ Version := "0.9.4",
 Date := "20/04/2023",
 ##<#GAPDoc Label="PKGVERSIONDATA">
 ##  <!ENTITY VERSION "0.9.4">
-##  <!ENTITY RELEASEDATE "20 April 2023">
+##  <!ENTITY RELEASEDATE "12 October 2023">
 ##  <!ENTITY RELEASEYEAR "2023">
 ##<#/GAPDoc>
 
 Persons := [
+#  rec(
+#    LastName      := "Zidaric",
+#    FirstNames    := "Nusa",
+#    IsAuthor      := true,
+#    IsMaintainer  := true,
+#    Email         := "nzidaric@uwaterloo.ca",
+#    WWWHome       := "http://comsec.uwaterloo.ca/",
+#    PostalAddress := Concatenation( [
+#                       "200 University Ave W",
+#                       "Waterloo",
+#                       "Canada",
+#                       "ON N2L 3G1" ] ),
+#    Place         := "Waterloo",
+#    Institution   := "UW-ComSec Lab"
+#  ),
   rec(
     LastName      := "Zidaric",
     FirstNames    := "Nusa",
     IsAuthor      := true,
     IsMaintainer  := true,
-    Email         := "nzidaric@uwaterloo.ca",
+    Email         := "n.zidaric@liacs.leidenuniv.nl",
     WWWHome       := "http://comsec.uwaterloo.ca/",
     PostalAddress := Concatenation( [
-                       "200 University Ave W",
-                       "Waterloo",
-                       "Canada",
-                       "ON N2L 3G1" ] ),
+                       "Niels Bohrweg 1",
+                       "Leiden",
+                       "The Netherlands",
+                       "2333 CA" ] ),
     Place         := "Waterloo",
-    Institution   := "UW-ComSec Lab"
+    Institution   := "University of Waterloo - ComSec Lab, Leiden University - LIACS"
   ),
+
 ],
 
 Status := "dev",

@@ -9,7 +9,64 @@
 <#Include Label="MatrixExpression">
 <#Include Label="FFA_mult_convolution">
 <#Include Label="FFA_mult_matrixU">
+
+The methods listed so far are able to generate implementation expressions for an
+arbitrary top-level expression. While not optimized, they still serve as a proof
+of concept. Further optimizations can be achieved with sub-expression elimination
+ and rewriting methods. Also, many optimized algorithms can be added. The next
+example explains the principle behind Itoh-Tsujii Algorithm (ITA)
+<Cite Key="Itoh" /> for tower field inversion (but does not implement ITA).
+ITA computes the inverse in <M>{\mathbb F}_{q^m}/{\mathbb F}_{q}</M>
+as <M>A^{-1}= (A^r)^{-1}\cdot A^{r-1}</M>, where
+<M>r=\frac{q^m-1}{q-1}</M> ensures that <M>A^r \in {\mathbb F}_{q}</M>,
+hence subfield operations are sufficient.
+
+<Example>
+<![CDATA[
+gap> K := GF(2);; x:= X(K, "x");;
+gap> f:= x^2 + x + 1;; F := FieldExtension(K, f);;
+gap> alfa := RootOfDefiningPolynomial(F); NB1 := GenerateNB(F, alfa);
+Z(2^2)
+Basis( GF(2^2), [ Z(2^2), Z(2^2)^2 ] )
+gap> g := x^2 + x + alfa;; G := FieldExtension(F, g);;
+gap> beta := RootOfDefiningPolynomial(G); NB2 := GenerateNB(G, beta);
+Z(2^4)
+Basis( AsField( GF(2^2), GF(2^4) ), [ Z(2^4), Z(2^4)^4 ] )
+gap> ChooseFieldElms(G);
+
+variables
+[ "a_0", "a_1" ]
+[ "b_0", "b_1" ]
+[ "d_0", "d_1", "d_2" ]
+gap> r := Int(Float((Size(F)^DegreeOfPolynomialOverField(F, g)-1)/(Size(F)-1)));
+5
+gap> # Ar is A^r, Arinv is (A^r)^(-1)
+gap> Ar := FFA_exp_matrixU(NB2, avec, r); Arinv := FFA_inv_matrixU(NB2, Ar);
+[ Z(2^2)*a_0^2+a_0*a_1+Z(2^2)*a_1^2, Z(2^2)*a_0^2+a_0*a_1+Z(2^2)*a_1^2 ]
+[ a_0^2*a_1^2+Z(2^2)^2*a_0+Z(2^2)^2*a_1, a_0^2*a_1^2+Z(2^2)^2*a_0+Z(2^2)^2*a_1 ]
+gap> Ar[1] = Ar[2]; Arinv[1] = Arinv[2]; # check if subfield
+true
+true
+gap> # Ar1 is A^(r-1), should be just re-wire as r-1=q and NB is used
+gap> Ar1 := FFA_exp_matrixU(NB2, avec, r-1);
+[ a_1, a_0 ]
+gap> # ITA inverse computed as ((A^r)^(-1))*(A^(r-1))
+gap> ITA := FFA_mult_matrixU(NB2, Arinv, Ar1);
+[ a_0^2+Z(2^2)^2*a_0*a_1+Z(2^2)^2*a_1^2, Z(2^2)^2*a_0^2+Z(2^2)^2*a_0*a_1+a_1^2 ]
+gap> # inverse computed directly
+gap> Ainv := FFA_inv_matrixU(NB2, avec);
+[ a_0^2+Z(2^2)^2*a_0*a_1+Z(2^2)^2*a_1^2, Z(2^2)^2*a_0^2+Z(2^2)^2*a_0*a_1+a_1^2 ]
+gap> Ainv = ITA;
+true
+]]>
+</Example>
+
+
+
 <#Include Label="FFA_mult_matrixM">
+
+
+
 </Section>
 
 </Chapter>
